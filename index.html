@@ -75,7 +75,7 @@
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">Kata Laluan (Nombor Kad Pengenalan Tanpa Sempang):</label>
-          <input type="password" id="inputIcMurid" placeholder="Cth: 120619010891" class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+          <input type="password" id="inputIcMurid" placeholder="Nombor kad pengenalan" class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:outline-none" />
         </div>
         <button onclick="loginMurid()" id="btnLoginMurid" class="w-full py-3 bg-teal-700 hover:bg-teal-800 text-white font-bold text-sm rounded-xl shadow-md transition flex items-center justify-center">
           <i class="fa-solid fa-arrow-right-to-bracket mr-2"></i> Masuk Portal Ujian
@@ -86,7 +86,7 @@
       <div id="formGuru" class="space-y-4 hidden">
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">Kata Laluan Pentadbir / Guru:</label>
-          <input type="password" id="inputPassGuru" class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:outline-none" placeholder="Masukkan kata laluan guru" />
+          <input type="password" id="inputPassGuru" class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:outline-none" placeholder="Kata laluan guru" />
         </div>
         <button onclick="loginGuru()" class="w-full py-3 bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm rounded-xl shadow-md transition flex items-center justify-center">
           <i class="fa-solid fa-lock-open mr-2"></i> Buka Mod Penandaan Guru
@@ -142,7 +142,7 @@
         <div>
           <h2 class="text-xl font-black text-slate-900">BAHAGIAN B [50 MARKAH]</h2>
           <p class="text-xs text-slate-500 mt-1">
-            <span class="font-bold text-teal-700">Arahan:</span> Jawab semua soalan 1 hingga 19. Anda boleh menyimpan jawapan pada bila-bila masa.
+            <span class="font-bold text-teal-700">Arahan:</span> Jawab semua soalan 1 hingga 19. Simpan jawapan mengikut nombor soalan atau serentak pada bahagian bawah.
           </p>
         </div>
         <div class="flex items-center space-x-2 no-print">
@@ -174,15 +174,15 @@
             </div>
           </div>
           <div class="bg-slate-50 p-4 rounded-xl border flex flex-col md:flex-row items-center justify-between gap-3 text-xs">
-            <div class="p-3 bg-white rounded-lg border shadow-2xs font-medium text-slate-700 flex-1">
+            <div class="p-3 bg-white rounded-lg border shadow-2xs font-medium text-slate-700 flex-1 text-center">
               "Penutup balang gula yang tidak ketat senang dimasuki semut"
             </div>
             <i class="fa-solid fa-arrow-right text-teal-700 hidden md:block"></i>
-            <div class="p-3 bg-teal-50 border border-teal-200 rounded-lg shadow-2xs font-bold text-teal-900 flex-1">
+            <div class="p-3 bg-teal-50 border border-teal-200 rounded-lg shadow-2xs font-bold text-teal-900 flex-1 text-center">
               "Penutup balang gula ditambah baik dengan mengetatkan penutup"
             </div>
           </div>
-          <p class="text-xs font-semibold text-slate-700">Tandakan (✓) pada situasi di atas sama ada masalah inventif atau bukan inventif:</p>
+          <p class="text-xs font-semibold text-slate-700">Tandakan (✓) pada situasi di atas:</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <label class="flex items-center p-3 bg-slate-50 border rounded-xl space-x-2 cursor-pointer hover:bg-teal-50">
               <input type="radio" name="ans_s1" value="Masalah inventif" class="text-teal-600 focus:ring-teal-500" />
@@ -217,15 +217,15 @@
           <div class="space-y-2">
             <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
               <span class="text-xs font-medium text-slate-700">Besar - kecil</span>
-              <input type="text" id="ans_s2_besar" maxlength="1" class="w-16 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="A/B/C" />
+              <input type="text" id="ans_s2_besar" maxlength="1" class="w-16 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="" />
             </div>
             <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
               <span class="text-xs font-medium text-slate-700">Berat - ringan</span>
-              <input type="text" id="ans_s2_berat" maxlength="1" class="w-16 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="A/B/C" />
+              <input type="text" id="ans_s2_berat" maxlength="1" class="w-16 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="" />
             </div>
             <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
               <span class="text-xs font-medium text-slate-700">Tinggi - rendah</span>
-              <input type="text" id="ans_s2_tinggi" maxlength="1" class="w-16 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="A/B/C" />
+              <input type="text" id="ans_s2_tinggi" maxlength="1" class="w-16 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="" />
             </div>
           </div>
           <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
@@ -234,7 +234,7 @@
           </div>
         </div>
 
-        <!-- SOALAN 3 -->
+        <!-- SOALAN 3 (DENGAN RAJAH CARTA ALIR) -->
         <div id="soalan_card_3" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
           <div class="flex justify-between items-center border-b pb-2">
             <span class="font-black text-slate-800 text-base">SOALAN 3</span>
@@ -243,22 +243,66 @@
               <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[3 Markah]</span>
             </div>
           </div>
-          <p class="text-sm font-semibold text-slate-800">Rajah menunjukkan carta alir proses penyelesaian masalah bukan inventif. Nyatakan perkara yang berlabel <strong>A, B</strong> dan <strong>C</strong>:</p>
-          <div class="p-3 bg-slate-50 rounded-xl border text-xs font-mono text-slate-700 text-center">
-            Mengenal pasti masalah ➔ [ A ] ➔ [ B ] ➔ [ C ] ➔ Menilai penyelesaian
+          <p class="text-sm font-semibold text-slate-800">Rajah berikut menunjukkan carta alir proses penyelesaian masalah bukan inventif. Nyatakan perkara yang berlabel <strong>A, B</strong> dan <strong>C</strong>:</p>
+          
+          <!-- RAJAH CARTA ALIR SOALAN 3 -->
+          <div class="p-4 bg-slate-50 border rounded-2xl flex justify-center">
+            <svg width="280" height="340" viewBox="0 0 280 340" class="max-w-full">
+              <!-- Kotak 1 -->
+              <rect x="40" y="10" width="200" height="36" rx="8" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
+              <text x="140" y="33" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">Mengenal pasti masalah</text>
+              <line x1="140" y1="46" x2="140" y2="68" stroke="#0f766e" stroke-width="2"/>
+              <polygon points="136,68 144,68 140,74" fill="#0f766e"/>
+
+              <!-- Kotak A -->
+              <rect x="40" y="74" width="200" height="36" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+              <text x="140" y="97" text-anchor="middle" font-size="13" font-weight="black" fill="#b45309">A</text>
+              <line x1="140" y1="110" x2="140" y2="132" stroke="#0f766e" stroke-width="2"/>
+              <polygon points="136,132 144,132 140,138" fill="#0f766e"/>
+
+              <!-- Kotak B -->
+              <rect x="40" y="138" width="200" height="36" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+              <text x="140" y="161" text-anchor="middle" font-size="13" font-weight="black" fill="#b45309">B</text>
+              <line x1="140" y1="174" x2="140" y2="196" stroke="#0f766e" stroke-width="2"/>
+              <polygon points="136,196 144,196 140,202" fill="#0f766e"/>
+
+              <!-- Kotak C -->
+              <rect x="40" y="202" width="200" height="36" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+              <text x="140" y="225" text-anchor="middle" font-size="13" font-weight="black" fill="#b45309">C</text>
+              <line x1="140" y1="238" x2="140" y2="258" stroke="#0f766e" stroke-width="2"/>
+              <polygon points="136,258 144,258 140,264" fill="#0f766e"/>
+
+              <!-- Kotak Nilai -->
+              <rect x="15" y="264" width="250" height="34" rx="8" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
+              <text x="140" y="285" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#0f172a">Menilai penyelesaian berjaya / tidak</text>
+
+              <!-- Garis Ya -->
+              <line x1="140" y1="298" x2="140" y2="318" stroke="#0f766e" stroke-width="2"/>
+              <polygon points="136,318 144,318 140,324" fill="#0f766e"/>
+              <text x="150" y="312" font-size="9" font-weight="bold" fill="#059669">Ya</text>
+              <text x="140" y="336" text-anchor="middle" font-size="11" font-weight="black" fill="#0f172a">Selesai</text>
+
+              <!-- Garis Tidak Loop Back -->
+              <line x1="265" y1="281" x2="272" y2="281" stroke="#dc2626" stroke-width="1.5"/>
+              <line x1="272" y1="281" x2="272" y2="92" stroke="#dc2626" stroke-width="1.5"/>
+              <line x1="272" y1="92" x2="242" y2="92" stroke="#dc2626" stroke-width="1.5"/>
+              <polygon points="244,89 244,95 240,92" fill="#dc2626"/>
+              <text x="250" y="275" font-size="9" font-weight="bold" fill="#dc2626">Tidak</text>
+            </svg>
           </div>
+
           <div class="space-y-3">
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1">A:</label>
-              <input type="text" id="ans_s3_a" class="w-full p-2.5 text-xs border rounded-xl" placeholder="Menyenaraikan pilihan penyelesaian..." />
+              <input type="text" id="ans_s3_a" class="w-full p-2.5 text-xs border rounded-xl" placeholder="" />
             </div>
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1">B:</label>
-              <input type="text" id="ans_s3_b" class="w-full p-2.5 text-xs border rounded-xl" placeholder="Membuat pilihan..." />
+              <input type="text" id="ans_s3_b" class="w-full p-2.5 text-xs border rounded-xl" placeholder="" />
             </div>
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1">C:</label>
-              <input type="text" id="ans_s3_c" class="w-full p-2.5 text-xs border rounded-xl" placeholder="Melaksanakan pilihan..." />
+              <input type="text" id="ans_s3_c" class="w-full p-2.5 text-xs border rounded-xl" placeholder="" />
             </div>
           </div>
           <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
@@ -267,7 +311,7 @@
           </div>
         </div>
 
-        <!-- SOALAN 4 -->
+        <!-- SOALAN 4 (DENGAN RAJAH POKOK PRINSIP RUANG) -->
         <div id="soalan_card_4" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
           <div class="flex justify-between items-center border-b pb-2">
             <span class="font-black text-slate-800 text-base">SOALAN 4</span>
@@ -276,13 +320,45 @@
               <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[5 Markah]</span>
             </div>
           </div>
-          <p class="text-sm font-semibold text-slate-800">Lengkapkan lima prinsip inventif bagi kaedah pemisahan ruang selain daripada <em>kualiti setempat</em> dan <em>tidak simetri</em> yang telah diberi:</p>
+          <p class="text-sm font-semibold text-slate-800">Lengkapkan prinsip inventif bagi kaedah pemisahan ruang dalam rajah di bawah ini:</p>
+
+          <!-- RAJAH POKOK SOALAN 4 -->
+          <div class="p-4 bg-slate-50 border rounded-2xl flex justify-center">
+            <svg width="420" height="230" viewBox="0 0 420 230" class="max-w-full">
+              <!-- Kotak Tajuk -->
+              <rect x="100" y="8" width="220" height="32" rx="4" fill="#e2e8f0" stroke="#334155" stroke-width="1.5"/>
+              <text x="210" y="28" text-anchor="middle" font-size="11" font-weight="black" fill="#0f172a">Prinsip Inventif Pemisahan Ruang</text>
+              <line x1="210" y1="40" x2="210" y2="185" stroke="#334155" stroke-width="1.5"/>
+
+              <!-- Baris 1 -->
+              <rect x="10" y="55" width="165" height="30" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+              <line x1="175" y1="70" x2="245" y2="70" stroke="#334155" stroke-width="1.2"/>
+              <rect x="245" y="55" width="165" height="30" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+
+              <!-- Baris 2 -->
+              <rect x="10" y="98" width="165" height="30" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+              <line x1="175" y1="113" x2="245" y2="113" stroke="#334155" stroke-width="1.2"/>
+              <rect x="245" y="98" width="165" height="30" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+
+              <!-- Baris 3 -->
+              <rect x="10" y="140" width="165" height="30" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+              <line x1="175" y1="155" x2="245" y2="155" stroke="#334155" stroke-width="1.2"/>
+              <rect x="245" y="140" width="165" height="30" fill="#f8fafc" stroke="#334155" stroke-width="1.2"/>
+              <text x="327" y="159" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">kualiti setempat</text>
+
+              <!-- Kotak Bawah -->
+              <polygon points="207,185 213,185 210,192" fill="#334155"/>
+              <rect x="125" y="192" width="170" height="30" fill="#f8fafc" stroke="#334155" stroke-width="1.2"/>
+              <text x="210" y="211" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">tidak simetri</text>
+            </svg>
+          </div>
+
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <input type="text" id="ans_s4_1" class="p-2.5 text-xs border rounded-xl" placeholder="1. Cth: Pembahagian" />
-            <input type="text" id="ans_s4_2" class="p-2.5 text-xs border rounded-xl" placeholder="2. Cth: Pengekstrakan" />
-            <input type="text" id="ans_s4_3" class="p-2.5 text-xs border rounded-xl" placeholder="3. Cth: Penyarangan" />
-            <input type="text" id="ans_s4_4" class="p-2.5 text-xs border rounded-xl" placeholder="4. Cth: Filem nipis / cangkerang lentur" />
-            <input type="text" id="ans_s4_5" class="p-2.5 text-xs border rounded-xl" placeholder="5. Cth: Pengantara" />
+            <input type="text" id="ans_s4_1" class="p-2.5 text-xs border rounded-xl" placeholder="1." />
+            <input type="text" id="ans_s4_2" class="p-2.5 text-xs border rounded-xl" placeholder="2." />
+            <input type="text" id="ans_s4_3" class="p-2.5 text-xs border rounded-xl" placeholder="3." />
+            <input type="text" id="ans_s4_4" class="p-2.5 text-xs border rounded-xl" placeholder="4." />
+            <input type="text" id="ans_s4_5" class="p-2.5 text-xs border rounded-xl" placeholder="5." />
           </div>
           <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
             <span id="badge_status_4" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
@@ -290,7 +366,7 @@
           </div>
         </div>
 
-        <!-- SOALAN 5 -->
+        <!-- SOALAN 5 (DENGAN RAJAH SIMBOL INTERAKSI) -->
         <div id="soalan_card_5" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
           <div class="flex justify-between items-center border-b pb-2">
             <span class="font-black text-slate-800 text-base">SOALAN 5</span>
@@ -303,24 +379,33 @@
           <div class="space-y-3">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-slate-50 border rounded-xl gap-2">
               <div class="flex items-center space-x-3">
-                <svg width="100" height="20"><line x1="5" y1="10" x2="90" y2="10" stroke="#0f172a" stroke-width="4" /></svg>
-                <span class="text-xs font-bold text-slate-700">(a) Anak panah garis tebal padu</span>
+                <svg width="120" height="24">
+                  <line x1="8" y1="12" x2="105" y2="12" stroke="#0f172a" stroke-width="5" />
+                  <polygon points="105,6 116,12 105,18" fill="#0f172a"/>
+                </svg>
+                <span class="text-xs font-bold text-slate-700">(a)</span>
               </div>
-              <input type="text" id="ans_s5_a" class="w-full sm:w-64 p-2 text-xs border rounded-lg" placeholder="Maksud simbol..." />
+              <input type="text" id="ans_s5_a" class="w-full sm:w-64 p-2 text-xs border rounded-lg" placeholder="" />
             </div>
             <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-slate-50 border rounded-xl gap-2">
               <div class="flex items-center space-x-3">
-                <svg width="100" height="20"><line x1="5" y1="10" x2="90" y2="10" stroke="#0f172a" stroke-width="2" stroke-dasharray="4 2" /></svg>
-                <span class="text-xs font-bold text-slate-700">(b) Anak panah garis putus-putus</span>
+                <svg width="120" height="24">
+                  <line x1="8" y1="12" x2="105" y2="12" stroke="#0f172a" stroke-width="2" stroke-dasharray="4 3" />
+                  <polygon points="105,7 115,12 105,17" fill="#0f172a"/>
+                </svg>
+                <span class="text-xs font-bold text-slate-700">(b)</span>
               </div>
-              <input type="text" id="ans_s5_b" class="w-full sm:w-64 p-2 text-xs border rounded-lg" placeholder="Maksud simbol..." />
+              <input type="text" id="ans_s5_b" class="w-full sm:w-64 p-2 text-xs border rounded-lg" placeholder="" />
             </div>
             <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-slate-50 border rounded-xl gap-2">
               <div class="flex items-center space-x-3">
-                <svg width="100" height="20"><path d="M5 10 Q25 0 45 10 T85 10" fill="none" stroke="#0f172a" stroke-width="2.5" /></svg>
-                <span class="text-xs font-bold text-slate-700">(c) Anak panah garis beralun/zig-zag</span>
+                <svg width="120" height="24">
+                  <path d="M 8 12 Q 22 4, 36 12 T 64 12 T 92 12 T 106 12" fill="none" stroke="#0f172a" stroke-width="2.5" />
+                  <polygon points="104,7 115,12 104,17" fill="#0f172a"/>
+                </svg>
+                <span class="text-xs font-bold text-slate-700">(c)</span>
               </div>
-              <input type="text" id="ans_s5_c" class="w-full sm:w-64 p-2 text-xs border rounded-lg" placeholder="Maksud simbol..." />
+              <input type="text" id="ans_s5_c" class="w-full sm:w-64 p-2 text-xs border rounded-lg" placeholder="" />
             </div>
           </div>
           <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
@@ -329,7 +414,7 @@
           </div>
         </div>
 
-        <!-- SOALAN 6 -->
+        <!-- SOALAN 6 (DENGAN RAJAH 5 PERALATAN) -->
         <div id="soalan_card_6" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
           <div class="flex justify-between items-center border-b pb-2">
             <span class="font-black text-slate-800 text-base">SOALAN 6</span>
@@ -338,41 +423,70 @@
               <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[3 Markah]</span>
             </div>
           </div>
-          <p class="text-sm font-semibold text-slate-800">Tandakan (✓) pada <strong>tiga peralatan</strong> yang digunakan pada kaedah konvensional:</p>
+          <p class="text-sm font-semibold text-slate-800">Tanda (✓) pada peralatan yang digunakan pada kaedah konvensional pada ruang yang disediakan:</p>
+
           <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 text-center">
+            <!-- 1. Tukul -->
             <label class="p-3 bg-slate-50 border rounded-xl flex flex-col items-center justify-between cursor-pointer hover:bg-teal-50">
-              <i class="fa-solid fa-hammer text-2xl text-slate-700 mb-2"></i>
-              <span class="text-xs font-bold">Tukul Kuku Kambing</span>
+              <svg width="60" height="70" viewBox="0 0 60 70">
+                <rect x="25" y="18" width="8" height="48" fill="#d97706" rx="2" stroke="#78350f" stroke-width="1"/>
+                <path d="M 12 16 L 38 16 Q 48 18 52 28 L 47 29 Q 44 22 36 21 L 20 21 Z" fill="#64748b" stroke="#334155" stroke-width="1.5"/>
+              </svg>
+              <span class="text-[11px] font-bold text-slate-700 mt-2">Tukul</span>
               <input type="checkbox" id="chk_s6_tukul" class="mt-2 rounded text-teal-600 focus:ring-teal-500" />
             </label>
+
+            <!-- 2. Pengisar Sudut -->
             <label class="p-3 bg-slate-50 border rounded-xl flex flex-col items-center justify-between cursor-pointer hover:bg-teal-50">
-              <i class="fa-solid fa-compact-disc text-2xl text-slate-700 mb-2"></i>
-              <span class="text-xs font-bold">Mesin Pengisar Sudut</span>
+              <svg width="60" height="70" viewBox="0 0 60 70">
+                <rect x="28" y="10" width="16" height="38" rx="4" fill="#ea580c" stroke="#9a3412" stroke-width="1.2"/>
+                <circle cx="24" cy="48" r="16" fill="#64748b" stroke="#334155" stroke-width="1.5"/>
+                <rect x="8" y="32" width="12" height="6" fill="#1e293b"/>
+              </svg>
+              <span class="text-[11px] font-bold text-slate-700 mt-2">Mesin Pengisar</span>
               <input type="checkbox" id="chk_s6_grinder" class="mt-2 rounded text-teal-600 focus:ring-teal-500" />
             </label>
+
+            <!-- 3. Pahat -->
             <label class="p-3 bg-slate-50 border rounded-xl flex flex-col items-center justify-between cursor-pointer hover:bg-teal-50">
-              <i class="fa-solid fa-ruler-combined text-2xl text-slate-700 mb-2"></i>
-              <span class="text-xs font-bold">Pahat Tepi Serong</span>
+              <svg width="60" height="70" viewBox="0 0 60 70">
+                <path d="M 32 8 L 42 18 L 26 34 L 16 24 Z" fill="#facc15" stroke="#a16207" stroke-width="1.2"/>
+                <path d="M 26 34 L 16 24 L 8 46 L 14 52 Z" fill="#94a3b8" stroke="#475569" stroke-width="1.2"/>
+              </svg>
+              <span class="text-[11px] font-bold text-slate-700 mt-2">Pahat</span>
               <input type="checkbox" id="chk_s6_pahat" class="mt-2 rounded text-teal-600 focus:ring-teal-500" />
             </label>
+
+            <!-- 4. Gergaji Tangan -->
             <label class="p-3 bg-slate-50 border rounded-xl flex flex-col items-center justify-between cursor-pointer hover:bg-teal-50">
-              <i class="fa-solid fa-screwdriver text-2xl text-slate-700 mb-2"></i>
-              <span class="text-xs font-bold">Gergaji Tangan</span>
+              <svg width="60" height="70" viewBox="0 0 60 70">
+                <polygon points="12,58 48,16 40,10 8,50" fill="#cbd5e1" stroke="#475569" stroke-width="1.2"/>
+                <circle cx="44" cy="18" r="8" fill="#d97706" stroke="#78350f" stroke-width="1.5"/>
+              </svg>
+              <span class="text-[11px] font-bold text-slate-700 mt-2">Gergaji Tangan</span>
               <input type="checkbox" id="chk_s6_gergaji" class="mt-2 rounded text-teal-600 focus:ring-teal-500" />
             </label>
+
+            <!-- 5. Gerudi Tanpa Wayar -->
             <label class="p-3 bg-slate-50 border rounded-xl flex flex-col items-center justify-between cursor-pointer hover:bg-teal-50">
-              <i class="fa-solid fa-screwdriver-wrench text-2xl text-slate-700 mb-2"></i>
-              <span class="text-xs font-bold">Gerudi Tanpa Wayar</span>
+              <svg width="60" height="70" viewBox="0 0 60 70">
+                <rect x="20" y="14" width="30" height="15" rx="3" fill="#f59e0b" stroke="#b45309" stroke-width="1.2"/>
+                <rect x="8" y="18" width="12" height="6" fill="#334155"/>
+                <rect x="32" y="29" width="12" height="24" fill="#f59e0b" stroke="#b45309" stroke-width="1.2"/>
+                <rect x="26" y="52" width="22" height="10" rx="2" fill="#1e293b"/>
+              </svg>
+              <span class="text-[11px] font-bold text-slate-700 mt-2">Gerudi Tanpa Wayar</span>
               <input type="checkbox" id="chk_s6_drill" class="mt-2 rounded text-teal-600 focus:ring-teal-500" />
             </label>
           </div>
+
           <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
             <span id="badge_status_6" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
             <button type="button" onclick="hantarSoalan(6)" id="btn_soalan_6" class="px-5 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow transition">Simpan Soalan 6</button>
           </div>
         </div>
 
-        <!-- SOALAN 7 -->
+        <!-- SOALAN 7 (DENGAN RAJAH PISAU SERBAGUNA) -->
         <div id="soalan_card_7" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
           <div class="flex justify-between items-center border-b pb-2">
             <span class="font-black text-slate-800 text-base">SOALAN 7</span>
@@ -381,19 +495,36 @@
               <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[3 Markah]</span>
             </div>
           </div>
-          <p class="text-sm font-semibold text-slate-800">Tandakan (✓) bagi penerangan konsep cadangan prinsip inventif bagi kaedah pemisahan ruang (pisau serbaguna) yang betul dan (✗) bagi yang salah:</p>
+          
+          <!-- RAJAH PISAU SERBAGUNA SOALAN 7 -->
+          <div class="p-3 bg-slate-50 border rounded-2xl flex flex-col items-center">
+            <span class="text-xs font-bold text-slate-600 mb-2">Pisau Serbaguna</span>
+            <svg width="220" height="90" viewBox="0 0 220 90">
+              <!-- Pemegang Pisau -->
+              <rect x="50" y="40" width="115" height="26" rx="10" fill="#dc2626" stroke="#991b1b" stroke-width="2"/>
+              <circle cx="68" cy="53" r="3" fill="#ffffff"/>
+              <!-- Mata Pisau Utama Terbuka -->
+              <path d="M 155 46 Q 195 28 205 18 Q 185 36 155 42 Z" fill="#94a3b8" stroke="#475569" stroke-width="1.5"/>
+              <!-- Pembuka Botol / Alatan Tambahan -->
+              <path d="M 60 42 Q 40 25 35 15 Q 50 22 62 38 Z" fill="#94a3b8" stroke="#475569" stroke-width="1.5"/>
+              <!-- Pembuka Palam Gabus (Corkscrew) -->
+              <path d="M 100 40 Q 95 25 105 15 Q 110 25 105 40" fill="none" stroke="#475569" stroke-width="2"/>
+            </svg>
+          </div>
+
+          <p class="text-sm font-semibold text-slate-800">Tanda (✓) bagi penerangan konsep cadangan prinsip inventif bagi kaedah pemisahan ruang yang betul dan (✗) bagi yang salah pada petak yang disediakan:</p>
           <div class="space-y-2">
             <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
-              <span class="text-xs font-medium text-slate-700">(a) Membolehkan setiap bahagian objek dapat menjalankan fungsi yang berbeza</span>
-              <input type="text" id="ans_s7_1" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg" placeholder="✓ / ✗" />
+              <span class="text-xs font-medium text-slate-700">Membolehkan setiap bahagian objek dapat menjalankan fungsi yang berbeza</span>
+              <input type="text" id="ans_s7_1" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg" placeholder="" />
             </div>
             <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
-              <span class="text-xs font-medium text-slate-700">(b) Menggunakan lapisan nipis untuk mengatasi masalah</span>
-              <input type="text" id="ans_s7_2" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg" placeholder="✓ / ✗" />
+              <span class="text-xs font-medium text-slate-700">Menggunakan lapisan nipis untuk mengatasi masalah</span>
+              <input type="text" id="ans_s7_2" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg" placeholder="" />
             </div>
             <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
-              <span class="text-xs font-medium text-slate-700">(c) Mengubah struktur objek daripada seragam kepada tidak seragam</span>
-              <input type="text" id="ans_s7_3" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg" placeholder="✓ / ✗" />
+              <span class="text-xs font-medium text-slate-700">Mengubah struktur objek daripada seragam kepada tidak seragam</span>
+              <input type="text" id="ans_s7_3" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg" placeholder="" />
             </div>
           </div>
           <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
@@ -402,7 +533,7 @@
           </div>
         </div>
 
-        <!-- SOALAN 8 -->
+        <!-- SOALAN 8 (DENGAN RAJAH ALIR PEMBUATAN) -->
         <div id="soalan_card_8" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
           <div class="flex justify-between items-center border-b pb-2">
             <span class="font-black text-slate-800 text-base">SOALAN 8</span>
@@ -411,19 +542,52 @@
               <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[2 Markah]</span>
             </div>
           </div>
-          <p class="text-sm font-semibold text-slate-800">Lengkapkan rajah proses pembuatan berikut dengan menulis <strong>A, B, C</strong> atau <strong>D</strong>:</p>
+          <p class="text-sm font-semibold text-slate-800">A, B, C dan D adalah maklumat dalam proses pembuatan:</p>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-slate-50 p-3 rounded-xl text-xs font-bold text-center border">
             <div>A : Lakaran/Lukisan</div>
             <div>B : Kaji selidik</div>
             <div>C : Penilaian</div>
             <div>D : Pembinaan produk</div>
           </div>
-          <div class="p-3 bg-slate-50 border rounded-xl text-xs flex flex-wrap items-center justify-center gap-2">
-            <span>Perancangan ➔</span>
-            <input type="text" id="ans_s8_i" maxlength="1" class="w-14 p-1.5 text-center font-bold border rounded-lg uppercase" placeholder="Huruf" />
-            <span>➔</span>
-            <input type="text" id="ans_s8_ii" maxlength="1" class="w-14 p-1.5 text-center font-bold border rounded-lg uppercase" placeholder="Huruf" />
-            <span>➔ Mock-up ➔ Model</span>
+          <p class="text-xs text-slate-600">Lengkapkan rajah berikut dengan menulis <strong>A, B, C</strong> atau <strong>D</strong> dalam ruang jawapan:</p>
+
+          <!-- RAJAH ALIR PROSES PEMBUATAN SOALAN 8 -->
+          <div class="p-3 bg-slate-50 border rounded-2xl flex justify-center">
+            <svg width="420" height="60" viewBox="0 0 420 60" class="max-w-full">
+              <rect x="5" y="15" width="80" height="30" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+              <text x="45" y="34" text-anchor="middle" font-size="10" font-weight="bold">Perancangan</text>
+              <line x1="85" y1="30" x2="105" y2="30" stroke="#334155" stroke-width="1.5"/>
+              <polygon points="103,27 108,30 103,33" fill="#334155"/>
+
+              <rect x="108" y="15" width="55" height="30" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+              <text x="135" y="34" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">i.</text>
+              <line x1="163" y1="30" x2="183" y2="30" stroke="#334155" stroke-width="1.5"/>
+              <polygon points="181,27 186,30 181,33" fill="#334155"/>
+
+              <rect x="186" y="15" width="55" height="30" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+              <text x="213" y="34" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">ii.</text>
+              <line x1="241" y1="30" x2="261" y2="30" stroke="#334155" stroke-width="1.5"/>
+              <polygon points="259,27 264,30 259,33" fill="#334155"/>
+
+              <rect x="264" y="15" width="70" height="30" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+              <text x="299" y="34" text-anchor="middle" font-size="10" font-weight="bold">Mock-up</text>
+              <line x1="334" y1="30" x2="354" y2="30" stroke="#334155" stroke-width="1.5"/>
+              <polygon points="352,27 357,30 352,33" fill="#334155"/>
+
+              <rect x="357" y="15" width="58" height="30" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+              <text x="386" y="34" text-anchor="middle" font-size="10" font-weight="bold">Model</text>
+            </svg>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">i.</label>
+              <input type="text" id="ans_s8_i" maxlength="1" class="w-full p-2.5 text-center font-bold border rounded-xl uppercase" placeholder="" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">ii.</label>
+              <input type="text" id="ans_s8_ii" maxlength="1" class="w-full p-2.5 text-center font-bold border rounded-xl uppercase" placeholder="" />
+            </div>
           </div>
           <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
             <span id="badge_status_8" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
@@ -440,18 +604,18 @@
               <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[3 Markah]</span>
             </div>
           </div>
-          <p class="text-sm font-semibold text-slate-800">Lengkapkan jadual contoh tuangan panas dan tuangan sejuk di bawah:</p>
+          <p class="text-sm font-semibold text-slate-800">Tuangan boleh dibahagi kepada dua jenis iaitu panas dan sejuk. Lengkapkan jadual di bawah dengan contoh yang betul:</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-2 p-3 bg-amber-50/40 border border-amber-200 rounded-xl">
               <span class="text-xs font-bold text-amber-900 block">Tuangan Panas:</span>
-              <div class="text-xs text-slate-600">• Besi keluli (Diberi)</div>
-              <input type="text" id="ans_s9_panas1" class="w-full p-2 text-xs border rounded-lg" placeholder="Contoh bahan (ii)..." />
-              <input type="text" id="ans_s9_panas2" class="w-full p-2 text-xs border rounded-lg" placeholder="Contoh bahan (iii)..." />
+              <div class="text-xs text-slate-600 font-semibold">• Besi keluli (Diberi)</div>
+              <input type="text" id="ans_s9_panas1" class="w-full p-2 text-xs border rounded-lg" placeholder="" />
+              <input type="text" id="ans_s9_panas2" class="w-full p-2 text-xs border rounded-lg" placeholder="" />
             </div>
             <div class="space-y-2 p-3 bg-teal-50/40 border border-teal-200 rounded-xl">
               <span class="text-xs font-bold text-teal-900 block">Tuangan Sejuk:</span>
-              <input type="text" id="ans_s9_sejuk" class="w-full p-2 text-xs border rounded-lg" placeholder="Contoh bahan (i)..." />
-              <div class="text-xs text-slate-600">• Plaster of paris (Diberi)</div>
+              <input type="text" id="ans_s9_sejuk" class="w-full p-2 text-xs border rounded-lg" placeholder="" />
+              <div class="text-xs text-slate-600 font-semibold">• Plaster of paris (Diberi)</div>
             </div>
           </div>
           <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
@@ -460,7 +624,7 @@
           </div>
         </div>
 
-        <!-- SOALAN 10 -->
+        <!-- SOALAN 10 (DENGAN RAJAH ELECTROPLATING) -->
         <div id="soalan_card_10" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
           <div class="flex justify-between items-center border-b pb-2">
             <span class="font-black text-slate-800 text-base">SOALAN 10</span>
@@ -469,15 +633,59 @@
               <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[2 Markah]</span>
             </div>
           </div>
-          <p class="text-sm font-semibold text-slate-800">Rajah menunjukkan proses <em>electroplating</em> pada sebentuk kunci. Isikan jawapan yang betul:</p>
+          <p class="text-sm font-semibold text-slate-800">Rajah di bawah menunjukkan proses <em>electroplating</em> pada sebentuk kunci. Isikan jawapan yang betul pada ruang yang disediakan:</p>
+
+          <!-- RAJAH RADAS ELECTROPLATING SOALAN 10 -->
+          <div class="p-4 bg-slate-50 border rounded-2xl flex justify-center">
+            <svg width="340" height="210" viewBox="0 0 340 210" class="max-w-full">
+              <!-- Bateri -->
+              <rect x="150" y="10" width="36" height="20" fill="#1e293b" stroke="#0f172a" stroke-width="1.5"/>
+              <line x1="168" y1="6" x2="168" y2="10" stroke="#0f172a" stroke-width="2"/>
+              <text x="168" y="2" text-anchor="middle" font-size="10" font-weight="bold">Bateri</text>
+              <text x="157" y="24" fill="#ffffff" font-size="9" font-weight="bold">+</text>
+              <text x="176" y="24" fill="#ffffff" font-size="9" font-weight="bold">-</text>
+
+              <!-- Wayar -->
+              <path d="M 155 20 L 130 20 L 130 80" fill="none" stroke="#0f172a" stroke-width="1.5"/>
+              <path d="M 180 20 L 210 20 L 210 95" fill="none" stroke="#0f172a" stroke-width="1.5"/>
+
+              <!-- Bikar & Cecair -->
+              <rect x="100" y="70" width="140" height="110" rx="4" fill="none" stroke="#334155" stroke-width="2"/>
+              <rect x="102" y="90" width="136" height="88" fill="#bae6fd" opacity="0.6"/>
+
+              <!-- Plat Anod (Kiri) -->
+              <rect x="120" y="60" width="16" height="90" fill="#cbd5e1" stroke="#475569" stroke-width="1.5"/>
+
+              <!-- Kunci Katod (Kanan) -->
+              <circle cx="210" cy="100" r="7" fill="none" stroke="#b45309" stroke-width="2.5"/>
+              <line x1="210" y1="107" x2="210" y2="135" stroke="#b45309" stroke-width="2.5"/>
+              <line x1="210" y1="126" x2="216" y2="126" stroke="#b45309" stroke-width="2.5"/>
+              <line x1="210" y1="133" x2="216" y2="133" stroke="#b45309" stroke-width="2.5"/>
+
+              <!-- Label Kotak Kiri (Anod) -->
+              <line x1="120" y1="110" x2="80" y2="110" stroke="#0f766e" stroke-width="1.5"/>
+              <rect x="10" y="95" width="70" height="30" fill="#fef3c7" stroke="#d97706" stroke-width="1.2"/>
+              <text x="45" y="114" text-anchor="middle" font-size="10" font-weight="bold" fill="#b45309">(a)</text>
+
+              <!-- Label Kunci Katod -->
+              <text x="265" y="105" font-size="10" font-weight="bold" fill="#0f172a">Kunci (katod)</text>
+              <line x1="218" y1="108" x2="260" y2="105" stroke="#334155" stroke-width="1"/>
+
+              <!-- Label Kotak Kanan (Cecair Elektrolit) -->
+              <line x1="230" y1="150" x2="260" y2="150" stroke="#0f766e" stroke-width="1.5"/>
+              <rect x="260" y="135" width="70" height="30" fill="#fef3c7" stroke="#d97706" stroke-width="1.2"/>
+              <text x="295" y="154" text-anchor="middle" font-size="10" font-weight="bold" fill="#b45309">(b)</text>
+            </svg>
+          </div>
+
           <div class="space-y-3">
             <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1">(a) Plat logam yang disambung ke terminal positif bateri (Anod):</label>
-              <input type="text" id="ans_s10_anod" class="w-full p-2.5 text-xs border rounded-xl" placeholder="Kepingan logam / Kuprum..." />
+              <label class="block text-xs font-bold text-slate-700 mb-1">(a) Plat logam yang disambungkan ke terminal positif:</label>
+              <input type="text" id="ans_s10_anod" class="w-full p-2.5 text-xs border rounded-xl" placeholder="" />
             </div>
             <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1">(b) Cecair larutan kimia yang digunakan (Elektrolit):</label>
-              <input type="text" id="ans_s10_cecair" class="w-full p-2.5 text-xs border rounded-xl" placeholder="Larutan elektrolit / Kuprum sulfat..." />
+              <label class="block text-xs font-bold text-slate-700 mb-1">(b) Cecair larutan yang digunakan:</label>
+              <input type="text" id="ans_s10_cecair" class="w-full p-2.5 text-xs border rounded-xl" placeholder="" />
             </div>
           </div>
           <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
@@ -495,19 +703,19 @@
               <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[3 Markah]</span>
             </div>
           </div>
-          <p class="text-sm font-semibold text-slate-800">Tandakan (✓) bagi pernyataan tentang teknologi pembuatan moden yang betul dan (✗) bagi yang salah:</p>
+          <p class="text-sm font-semibold text-slate-800">Tanda (✓) bagi penyataan tentang teknologi pembuatan moden yang betul dan (✗) bagi yang salah pada petak yang disediakan:</p>
           <div class="space-y-2">
             <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
-              <span class="text-xs font-medium text-slate-700">(a) Menggunakan alatan mesin seperti gergaji jig</span>
-              <input type="text" id="ans_s11_1" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg" placeholder="✓ / ✗" />
+              <span class="text-xs font-medium text-slate-700">Menggunakan alatan mesin seperti gergaji jig</span>
+              <input type="text" id="ans_s11_1" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg" placeholder="" />
             </div>
             <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
-              <span class="text-xs font-medium text-slate-700">(b) Penghasilan produk akan mengambil masa yang lama</span>
-              <input type="text" id="ans_s11_2" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg" placeholder="✓ / ✗" />
+              <span class="text-xs font-medium text-slate-700">Penghasilan produk akan mengambil masa yang lama</span>
+              <input type="text" id="ans_s11_2" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg" placeholder="" />
             </div>
             <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
-              <span class="text-xs font-medium text-slate-700">(c) Memerlukan tenaga kerja yang mahir</span>
-              <input type="text" id="ans_s11_3" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg" placeholder="✓ / ✗" />
+              <span class="text-xs font-medium text-slate-700">Memerlukan tenaga kerja yang mahir</span>
+              <input type="text" id="ans_s11_3" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg" placeholder="" />
             </div>
           </div>
           <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
@@ -525,13 +733,16 @@
               <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[5 Markah]</span>
             </div>
           </div>
-          <p class="text-sm font-semibold text-slate-800">Lengkapkan baki lima aspek perbezaan kaedah konvensional dan moden selain <em>Masa</em> dan <em>Hasil</em>:</p>
+          <p class="text-sm font-semibold text-slate-800">Terdapat tujuh elemen perbezaan kaedah konvensional dan moden. Lengkapkan baki lima aspek di bawah dengan jawapan yang betul:</p>
+          <div class="p-3 bg-slate-50 border rounded-xl text-xs font-semibold text-slate-600 mb-2">
+            i. Masa (Diberi) &nbsp;|&nbsp; ii. Hasil (Diberi)
+          </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <input type="text" id="ans_s12_1" class="p-2.5 text-xs border rounded-xl" placeholder="Aspek iii (Cth: Kos)" />
-            <input type="text" id="ans_s12_2" class="p-2.5 text-xs border rounded-xl" placeholder="Aspek iv (Cth: Tenaga kerja)" />
-            <input type="text" id="ans_s12_3" class="p-2.5 text-xs border rounded-xl" placeholder="Aspek v (Cth: Kuantiti)" />
-            <input type="text" id="ans_s12_4" class="p-2.5 text-xs border rounded-xl" placeholder="Aspek vi (Cth: Kualiti)" />
-            <input type="text" id="ans_s12_5" class="p-2.5 text-xs border rounded-xl" placeholder="Aspek vii (Cth: Estetika)" />
+            <input type="text" id="ans_s12_1" class="p-2.5 text-xs border rounded-xl" placeholder="iii." />
+            <input type="text" id="ans_s12_2" class="p-2.5 text-xs border rounded-xl" placeholder="iv." />
+            <input type="text" id="ans_s12_3" class="p-2.5 text-xs border rounded-xl" placeholder="v." />
+            <input type="text" id="ans_s12_4" class="p-2.5 text-xs border rounded-xl" placeholder="vi." />
+            <input type="text" id="ans_s12_5" class="p-2.5 text-xs border rounded-xl" placeholder="vii." />
           </div>
           <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
             <span id="badge_status_12" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
@@ -539,7 +750,7 @@
           </div>
         </div>
 
-        <!-- SOALAN 13 -->
+        <!-- SOALAN 13 (DENGAN RAJAH CARTA MODEL) -->
         <div id="soalan_card_13" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
           <div class="flex justify-between items-center border-b pb-2">
             <span class="font-black text-slate-800 text-base">SOALAN 13</span>
@@ -548,10 +759,25 @@
               <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[2 Markah]</span>
             </div>
           </div>
-          <p class="text-sm font-semibold text-slate-800">Nyatakan dua jenis model dalam pembinaan produk:</p>
+          <p class="text-sm font-semibold text-slate-800">Asas kepada pembinaan sesuatu produk ialah satu objek seakan-akan menyerupai reka bentuk produk yang dinamakan model. Nyatakan dua jenis model tersebut:</p>
+
+          <!-- RAJAH CARTA DUA MODEL SOALAN 13 -->
+          <div class="p-3 bg-slate-50 border rounded-2xl flex justify-center">
+            <svg width="260" height="90" viewBox="0 0 260 90" class="max-w-full">
+              <rect x="85" y="10" width="90" height="28" rx="4" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
+              <text x="130" y="28" text-anchor="middle" font-size="11" font-weight="bold">Model</text>
+              <line x1="130" y1="38" x2="130" y2="50" stroke="#334155" stroke-width="1.5"/>
+              <line x1="55" y1="50" x2="205" y2="50" stroke="#334155" stroke-width="1.5"/>
+              <line x1="55" y1="50" x2="55" y2="60" stroke="#334155" stroke-width="1.5"/>
+              <line x1="205" y1="50" x2="205" y2="60" stroke="#334155" stroke-width="1.5"/>
+              <rect x="15" y="60" width="80" height="26" fill="#fef3c7" stroke="#d97706" stroke-width="1.2"/>
+              <rect x="165" y="60" width="80" height="26" fill="#fef3c7" stroke="#d97706" stroke-width="1.2"/>
+            </svg>
+          </div>
+
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <input type="text" id="ans_s13_1" class="p-2.5 text-xs border rounded-xl" placeholder="1. Cth: Model statik" />
-            <input type="text" id="ans_s13_2" class="p-2.5 text-xs border rounded-xl" placeholder="2. Cth: Model berfungsi" />
+            <input type="text" id="ans_s13_1" class="p-2.5 text-xs border rounded-xl" placeholder="1." />
+            <input type="text" id="ans_s13_2" class="p-2.5 text-xs border rounded-xl" placeholder="2." />
           </div>
           <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
             <span id="badge_status_13" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
@@ -559,7 +785,7 @@
           </div>
         </div>
 
-        <!-- SOALAN 14 -->
+        <!-- SOALAN 14 (DENGAN RAJAH ALIR PROSES ACUAN) -->
         <div id="soalan_card_14" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
           <div class="flex justify-between items-center border-b pb-2">
             <span class="font-black text-slate-800 text-base">SOALAN 14</span>
@@ -569,10 +795,34 @@
             </div>
           </div>
           <p class="text-sm font-semibold text-slate-800">Lengkapkan proses dalam menghasilkan acuan model 3D:</p>
-          <div class="space-y-2 text-xs">
-            <div class="p-2.5 bg-slate-50 border rounded-xl text-slate-600 font-semibold">i. Menghasilkan model awal 3D (Diberi)</div>
-            <input type="text" id="ans_s14_ii" class="w-full p-2.5 border rounded-xl" placeholder="ii. Cth: Membuat acuan..." />
-            <input type="text" id="ans_s14_iii" class="w-full p-2.5 border rounded-xl" placeholder="iii. Cth: Menuang bahan tuangan..." />
+
+          <!-- RAJAH ALIR ACUAN MODEL 3D SOALAN 14 -->
+          <div class="p-3 bg-slate-50 border rounded-2xl flex justify-center">
+            <svg width="380" height="60" viewBox="0 0 380 60" class="max-w-full">
+              <rect x="5" y="15" width="130" height="32" rx="4" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+              <text x="70" y="34" text-anchor="middle" font-size="9" font-weight="bold">i. Model awal 3D</text>
+              <line x1="135" y1="31" x2="155" y2="31" stroke="#334155" stroke-width="1.5"/>
+              <polygon points="153,28 158,31 153,34" fill="#334155"/>
+
+              <rect x="158" y="15" width="95" height="32" rx="4" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+              <text x="205" y="34" text-anchor="middle" font-size="10" font-weight="bold" fill="#b45309">ii.</text>
+              <line x1="253" y1="31" x2="273" y2="31" stroke="#334155" stroke-width="1.5"/>
+              <polygon points="271,28 276,31 271,34" fill="#334155"/>
+
+              <rect x="276" y="15" width="95" height="32" rx="4" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+              <text x="323" y="34" text-anchor="middle" font-size="10" font-weight="bold" fill="#b45309">iii.</text>
+            </svg>
+          </div>
+
+          <div class="space-y-2">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">ii.</label>
+              <input type="text" id="ans_s14_ii" class="w-full p-2.5 text-xs border rounded-xl" placeholder="" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">iii.</label>
+              <input type="text" id="ans_s14_iii" class="w-full p-2.5 text-xs border rounded-xl" placeholder="" />
+            </div>
           </div>
           <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
             <span id="badge_status_14" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
@@ -589,24 +839,25 @@
               <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[3 Markah]</span>
             </div>
           </div>
-          <p class="text-sm font-semibold text-slate-800">Padankan maksud istilah berikut dengan menulis <strong>A, B</strong> atau <strong>C</strong>:</p>
+          <p class="text-sm font-semibold text-slate-800">A, B dan C adalah istilah dalam reka bentuk makanan:</p>
           <div class="grid grid-cols-3 gap-2 bg-slate-50 p-3 rounded-xl text-xs font-bold text-center border">
             <div>A : Makanan</div>
             <div>B : Reka bentuk</div>
             <div>C : Reka bentuk makanan</div>
           </div>
+          <p class="text-xs text-slate-600">Padankan maksud berikut dengan menulis <strong>A, B</strong> dan <strong>C</strong> pada petak yang disediakan:</p>
           <div class="space-y-2">
             <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl gap-2">
-              <span class="text-xs font-medium text-slate-700">Aktiviti merealisasikan idea kepada bentuk makanan yang melibatkan inovasi dan kreativiti</span>
-              <input type="text" id="ans_s15_1" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="A/B/C" />
+              <span class="text-xs font-medium text-slate-700">Reka bentuk makanan adalah aktiviti merealisasikan idea kepada bentuk makanan yang melibatkan inovasi dan kreativiti</span>
+              <input type="text" id="ans_s15_1" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="" />
             </div>
             <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl gap-2">
               <span class="text-xs font-medium text-slate-700">Bahan yang boleh dimakan dalam bentuk pepejal atau cecair</span>
-              <input type="text" id="ans_s15_2" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="A/B/C" />
+              <input type="text" id="ans_s15_2" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="" />
             </div>
             <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl gap-2">
               <span class="text-xs font-medium text-slate-700">Pengetahuan tentang penghasilan idea secara terancang untuk menghasilkan sesuatu produk</span>
-              <input type="text" id="ans_s15_3" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="A/B/C" />
+              <input type="text" id="ans_s15_3" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="" />
             </div>
           </div>
           <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
@@ -615,7 +866,7 @@
           </div>
         </div>
 
-        <!-- SOALAN 16 -->
+        <!-- SOALAN 16 (DENGAN RAJAH KLASIFIKASI MAKANAN) -->
         <div id="soalan_card_16" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
           <div class="flex justify-between items-center border-b pb-2">
             <span class="font-black text-slate-800 text-base">SOALAN 16</span>
@@ -624,10 +875,33 @@
               <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[2 Markah]</span>
             </div>
           </div>
-          <p class="text-sm font-semibold text-slate-800">Nyatakan dua klasifikasi reka bentuk makanan:</p>
+          <p class="text-sm font-semibold text-slate-800">Nyatakan klasifikasi reka bentuk makanan dalam rajah di bawah:</p>
+
+          <!-- RAJAH OVAL KLASIFIKASI SOALAN 16 -->
+          <div class="p-3 bg-slate-50 border rounded-2xl flex justify-center">
+            <svg width="380" height="80" viewBox="0 0 380 80" class="max-w-full">
+              <!-- Kotak Tengah -->
+              <rect x="125" y="20" width="130" height="38" rx="4" fill="#e2e8f0" stroke="#334155" stroke-width="1.5"/>
+              <text x="190" y="36" text-anchor="middle" font-size="10" font-weight="black">Klasifikasi Reka</text>
+              <text x="190" y="49" text-anchor="middle" font-size="10" font-weight="black">Bentuk Makanan</text>
+
+              <!-- Garis Panah Kiri -->
+              <line x1="125" y1="39" x2="108" y2="39" stroke="#334155" stroke-width="1.5"/>
+              <polygon points="112,36 106,39 112,42" fill="#334155"/>
+              <!-- Oval Kiri -->
+              <ellipse cx="55" cy="39" rx="50" ry="24" fill="#fef3c7" stroke="#d97706" stroke-width="1.2"/>
+
+              <!-- Garis Panah Kanan -->
+              <line x1="255" y1="39" x2="272" y2="39" stroke="#334155" stroke-width="1.5"/>
+              <polygon points="268,36 274,39 268,42" fill="#334155"/>
+              <!-- Oval Kanan -->
+              <ellipse cx="325" cy="39" rx="50" ry="24" fill="#fef3c7" stroke="#d97706" stroke-width="1.2"/>
+            </svg>
+          </div>
+
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <input type="text" id="ans_s16_1" class="p-2.5 text-xs border rounded-xl" placeholder="1. Cth: Reka bentuk susunan dan hiasan makanan" />
-            <input type="text" id="ans_s16_2" class="p-2.5 text-xs border rounded-xl" placeholder="2. Cth: Reka bentuk makanan itu sendiri" />
+            <input type="text" id="ans_s16_1" class="p-2.5 text-xs border rounded-xl" placeholder="1." />
+            <input type="text" id="ans_s16_2" class="p-2.5 text-xs border rounded-xl" placeholder="2." />
           </div>
           <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
             <span id="badge_status_16" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
@@ -635,7 +909,7 @@
           </div>
         </div>
 
-        <!-- SOALAN 17 -->
+        <!-- SOALAN 17 (DENGAN RAJAH ALATAN MENGHIAS) -->
         <div id="soalan_card_17" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
           <div class="flex justify-between items-center border-b pb-2">
             <span class="font-black text-slate-800 text-base">SOALAN 17</span>
@@ -644,24 +918,56 @@
               <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[3 Markah]</span>
             </div>
           </div>
-          <p class="text-sm font-semibold text-slate-800">Padankan alatan menghias berikut dengan menulis <strong>A, B</strong> atau <strong>C</strong>:</p>
+          <p class="text-sm font-semibold text-slate-800">Padankan alatan menghias yang berikut dengan rajah yang tepat dengan menulis <strong>A, B</strong> dan <strong>C</strong> pada ruang yang disediakan:</p>
           <div class="grid grid-cols-3 gap-2 bg-slate-50 p-3 rounded-xl text-xs font-bold text-center border">
             <div>A : Tiub aising</div>
             <div>B : Pisau pelepa</div>
             <div>C : Beg aising</div>
           </div>
+
+          <!-- TIGA ILUSTRASI ALATAN MENGHIAS SOALAN 17 -->
+          <div class="grid grid-cols-3 gap-3 p-3 bg-slate-50 border rounded-2xl">
+            <!-- Rajah 1: Beg Aising -->
+            <div class="flex flex-col items-center">
+              <svg width="70" height="70" viewBox="0 0 70 70">
+                <path d="M 12 12 Q 35 30 55 58 L 50 62 Q 25 35 8 20 Z" fill="#ea580c" stroke="#9a3412" stroke-width="1.2"/>
+                <polygon points="53,55 60,65 50,62" fill="#cbd5e1" stroke="#475569" stroke-width="1"/>
+              </svg>
+              <span class="text-[10px] font-bold text-slate-500 mt-1">Rajah (i)</span>
+            </div>
+
+            <!-- Rajah 2: Tiub Aising (Nozel) -->
+            <div class="flex flex-col items-center">
+              <svg width="70" height="70" viewBox="0 0 70 70">
+                <polygon points="20,55 35,20 42,20 50,55" fill="#cbd5e1" stroke="#475569" stroke-width="1.2"/>
+                <polygon points="35,20 38,15 42,20" fill="#94a3b8"/>
+              </svg>
+              <span class="text-[10px] font-bold text-slate-500 mt-1">Rajah (ii)</span>
+            </div>
+
+            <!-- Rajah 3: Pisau Pelepa -->
+            <div class="flex flex-col items-center">
+              <svg width="70" height="70" viewBox="0 0 70 70">
+                <rect x="48" y="10" width="8" height="20" rx="2" fill="#dc2626" stroke="#991b1b" stroke-width="1"/>
+                <line x1="52" y1="30" x2="42" y2="40" stroke="#475569" stroke-width="2.5"/>
+                <line x1="42" y1="40" x2="16" y2="64" stroke="#94a3b8" stroke-width="5" stroke-linecap="round"/>
+              </svg>
+              <span class="text-[10px] font-bold text-slate-500 mt-1">Rajah (iii)</span>
+            </div>
+          </div>
+
           <div class="space-y-2">
             <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
-              <span class="text-xs font-medium text-slate-700">(a) Memegang aising dan memicit keluar melalui nozel corak</span>
-              <input type="text" id="ans_s17_1" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="A/B/C" />
+              <span class="text-xs font-medium text-slate-700">Rajah (i)</span>
+              <input type="text" id="ans_s17_1" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="" />
             </div>
             <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
-              <span class="text-xs font-medium text-slate-700">(b) Pelbagai corak muncung keluli untuk membentuk bunga/tepi kek</span>
-              <input type="text" id="ans_s17_2" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="A/B/C" />
+              <span class="text-xs font-medium text-slate-700">Rajah (ii)</span>
+              <input type="text" id="ans_s17_2" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="" />
             </div>
             <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
-              <span class="text-xs font-medium text-slate-700">(c) Meratakan krim aising pada permukaan kek</span>
-              <input type="text" id="ans_s17_3" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="A/B/C" />
+              <span class="text-xs font-medium text-slate-700">Rajah (iii)</span>
+              <input type="text" id="ans_s17_3" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="" />
             </div>
           </div>
           <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
@@ -679,12 +985,12 @@
               <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[4 Markah]</span>
             </div>
           </div>
-          <p class="text-sm font-semibold text-slate-800">Senaraikan <strong>empat</strong> daripada lapan elemen yang perlu ada pada sesuatu pembungkusan makanan:</p>
+          <p class="text-sm font-semibold text-slate-800">Senaraikan empat daripada lapan elemen yang perlu ada pada sesuatu pembungkusan makanan:</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <input type="text" id="ans_s18_1" class="p-2.5 text-xs border rounded-xl" placeholder="a. Cth: Keselamatan" />
-            <input type="text" id="ans_s18_2" class="p-2.5 text-xs border rounded-xl" placeholder="b. Cth: Maklumat / Pelabelan" />
-            <input type="text" id="ans_s18_3" class="p-2.5 text-xs border rounded-xl" placeholder="c. Cth: Jenama" />
-            <input type="text" id="ans_s18_4" class="p-2.5 text-xs border rounded-xl" placeholder="d. Cth: Tipografi / Warna" />
+            <input type="text" id="ans_s18_1" class="p-2.5 text-xs border rounded-xl" placeholder="a." />
+            <input type="text" id="ans_s18_2" class="p-2.5 text-xs border rounded-xl" placeholder="b." />
+            <input type="text" id="ans_s18_3" class="p-2.5 text-xs border rounded-xl" placeholder="c." />
+            <input type="text" id="ans_s18_4" class="p-2.5 text-xs border rounded-xl" placeholder="d." />
           </div>
           <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
             <span id="badge_status_18" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
@@ -701,19 +1007,26 @@
               <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[3 Markah]</span>
             </div>
           </div>
-          <p class="text-sm font-semibold text-slate-800">Susun langkah penilaian reka bentuk makanan mengikut urutan yang betul dengan menulis <strong>A, B</strong> dan <strong>C</strong>:</p>
+          <p class="text-sm font-semibold text-slate-800">A, B dan C adalah langkah penilaian reka bentuk makanan:</p>
           <div class="space-y-2 bg-slate-50 p-3 rounded-xl text-xs border">
-            <div><strong>A :</strong> Hasil terakhir reka bentuk makanan perlulah memenuhi kriteria yang ditetapkan</div>
-            <div><strong>B :</strong> Lakaran perkembangan idea perlu mempunyai identiti tersendiri</div>
-            <div><strong>C :</strong> Pemilihan bahan, alatan dan teknik yang betul</div>
+            <div><strong>A :</strong> Hasil terakhir reka bentuk makanan perlulah memenuhi kriteria yang telah ditetapkan</div>
+            <div><strong>B :</strong> Lakaran perkembangan idea reka bentuk makanan yang akan dibuat perlu mempunyai identiti tersendiri</div>
+            <div><strong>C :</strong> Pemilihan bahan, alatan dan teknik yang betul dapat menghasilkan reka bentuk makanan</div>
           </div>
-          <div class="flex items-center justify-center gap-2 p-3 bg-slate-50 border rounded-xl text-xs font-bold">
-            <span>Langkah 1:</span>
-            <input type="text" id="ans_s19_1" maxlength="1" class="w-14 p-1.5 text-center border rounded-lg uppercase" placeholder="Huruf" />
-            <span>➔ Langkah 2:</span>
-            <input type="text" id="ans_s19_2" maxlength="1" class="w-14 p-1.5 text-center border rounded-lg uppercase" placeholder="Huruf" />
-            <span>➔ Langkah 3:</span>
-            <input type="text" id="ans_s19_3" maxlength="1" class="w-14 p-1.5 text-center border rounded-lg uppercase" placeholder="Huruf" />
+          <p class="text-xs text-slate-600">Susun langkah itu mengikut urutan yang betul dengan menulis <strong>A, B</strong> dan <strong>C</strong> pada petak yang disediakan:</p>
+          <div class="grid grid-cols-3 gap-3">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Langkah 1:</label>
+              <input type="text" id="ans_s19_1" maxlength="1" class="w-full p-2.5 text-center font-bold border rounded-xl uppercase" placeholder="" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Langkah 2:</label>
+              <input type="text" id="ans_s19_2" maxlength="1" class="w-full p-2.5 text-center font-bold border rounded-xl uppercase" placeholder="" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Langkah 3:</label>
+              <input type="text" id="ans_s19_3" maxlength="1" class="w-full p-2.5 text-center font-bold border rounded-xl uppercase" placeholder="" />
+            </div>
           </div>
           <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
             <span id="badge_status_19" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
@@ -818,7 +1131,7 @@
       <div class="bg-white p-6 rounded-2xl shadow border border-slate-200 space-y-4">
         <div>
           <label class="block text-sm font-bold text-slate-800 mb-1">Ulasan & Maklum Balas Guru kepada Calon:</label>
-          <textarea id="ulasanGuru" rows="3" class="w-full p-3 text-sm border rounded-xl focus:ring-2 focus:ring-amber-500" placeholder="Tuliskan ulasan pencapaian calon di sini..."></textarea>
+          <textarea id="ulasanGuru" rows="3" class="w-full p-3 text-sm border rounded-xl focus:ring-2 focus:ring-amber-500" placeholder="Tuliskan ulasan di sini..."></textarea>
         </div>
         <div class="flex justify-end">
           <button onclick="simpanPemarkahanGuru()" class="px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm rounded-xl shadow-lg transition">
@@ -1210,9 +1523,9 @@
         return `(a) ${document.getElementById("ans_s5_a").value} | (b) ${document.getElementById("ans_s5_b").value} | (c) ${document.getElementById("ans_s5_c").value}`;
       } else if (sNo === 6) {
         let chks = [];
-        if (document.getElementById("chk_s6_tukul").checked) chks.push("Tukul kuku kambing");
-        if (document.getElementById("chk_s6_grinder").checked) chks.push("Mesin pengisar sudut");
-        if (document.getElementById("chk_s6_pahat").checked) chks.push("Pahat tepi serong");
+        if (document.getElementById("chk_s6_tukul").checked) chks.push("Tukul");
+        if (document.getElementById("chk_s6_grinder").checked) chks.push("Mesin pengisar");
+        if (document.getElementById("chk_s6_pahat").checked) chks.push("Pahat");
         if (document.getElementById("chk_s6_gergaji").checked) chks.push("Gergaji tangan");
         if (document.getElementById("chk_s6_drill").checked) chks.push("Gerudi tanpa wayar");
         return chks.join(", ");
@@ -1237,7 +1550,7 @@
       } else if (sNo === 16) {
         return `1: ${document.getElementById("ans_s16_1").value} | 2: ${document.getElementById("ans_s16_2").value}`;
       } else if (sNo === 17) {
-        return `(a) ${document.getElementById("ans_s17_1").value.toUpperCase()} | (b) ${document.getElementById("ans_s17_2").value.toUpperCase()} | (c) ${document.getElementById("ans_s17_3").value.toUpperCase()}`;
+        return `(i) ${document.getElementById("ans_s17_1").value.toUpperCase()} | (ii) ${document.getElementById("ans_s17_2").value.toUpperCase()} | (iii) ${document.getElementById("ans_s17_3").value.toUpperCase()}`;
       } else if (sNo === 18) {
         return [1,2,3,4].map(i => document.getElementById(`ans_s18_${i}`).value).filter(Boolean).join(", ");
       } else if (sNo === 19) {
@@ -1333,9 +1646,9 @@
         if (parts[1]) document.getElementById("ans_s16_2").value = parts[1].replace("2: ", "");
       } else if (sNo === 17) {
         const parts = strVal.split(" | ");
-        if (parts[0]) document.getElementById("ans_s17_1").value = parts[0].replace("(a) ", "");
-        if (parts[1]) document.getElementById("ans_s17_2").value = parts[1].replace("(b) ", "");
-        if (parts[2]) document.getElementById("ans_s17_3").value = parts[2].replace("(c) ", "");
+        if (parts[0]) document.getElementById("ans_s17_1").value = parts[0].replace("(i) ", "");
+        if (parts[1]) document.getElementById("ans_s17_2").value = parts[1].replace("(ii) ", "");
+        if (parts[2]) document.getElementById("ans_s17_3").value = parts[2].replace("(iii) ", "");
       } else if (sNo === 18) {
         const parts = strVal.split(", ");
         parts.forEach((p, idx) => {
