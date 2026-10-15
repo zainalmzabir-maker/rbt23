@@ -1,0 +1,1895 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peperiksaan Pertengahan Tahun RBT Tingkatan 2 - Bahagian B</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    @media print {
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      body { background-color: #ffffff; color: #000000; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- HEADER SISTEM -->
+  <header class="bg-teal-950 text-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-amber-400 flex items-center justify-center text-teal-950 font-black text-xl shadow">
+          T2
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold leading-tight">REKA BENTUK DAN TEKNOLOGI (RBT) TINGKATAN 2</h1>
+          <p class="text-[11px] text-teal-200">PEPERIKSAAN PERTENGAHAN TAHUN (PPT) - BAHAGIAN B [50 MARKAH]</p>
+        </div>
+      </div>
+
+      <div id="userBadge" class="hidden flex items-center space-x-3">
+        <div class="text-right">
+          <p id="badgeNama" class="text-xs md:text-sm font-semibold text-amber-300"></p>
+          <p id="badgePeranan" class="text-[10px] text-slate-300 uppercase tracking-widest font-mono"></p>
+        </div>
+        <button onclick="logout()" class="px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold rounded-lg transition shadow">
+          <i class="fa-solid fa-right-from-bracket mr-1"></i> Log Keluar
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- KANDUNGAN UTAMA -->
+  <main class="max-w-7xl mx-auto p-4 md:p-6 w-full flex-grow">
+
+    <!-- 1. MODUL LOG MASUK -->
+    <section id="loginSection" class="max-w-md mx-auto my-10 bg-white rounded-2xl shadow-xl border border-slate-200 p-6 md:p-8">
+      <div class="text-center mb-6">
+        <div class="w-16 h-16 bg-teal-50 text-teal-700 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <h2 class="text-2xl font-black text-slate-800">Portal e-Ujian RBT T2</h2>
+        <p class="text-xs text-slate-500 mt-1">Sila log masuk mengikut peranan anda</p>
+      </div>
+
+      <div class="flex bg-slate-100 p-1.5 rounded-xl mb-5">
+        <button id="tabMuridBtn" onclick="switchLoginTab('murid')" class="w-1/2 py-2 rounded-lg font-bold text-xs md:text-sm transition bg-white text-teal-950 shadow">
+          <i class="fa-solid fa-user-pen mr-1"></i> Calon Murid
+        </button>
+        <button id="tabGuruBtn" onclick="switchLoginTab('guru')" class="w-1/2 py-2 rounded-lg font-bold text-xs md:text-sm transition text-slate-500 hover:text-teal-950">
+          <i class="fa-solid fa-chalkboard-user mr-1"></i> Mod Guru
+        </button>
+      </div>
+
+      <!-- Borang Murid -->
+      <div id="formMurid" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Pilih Nama Anda:</label>
+          <select id="selectNamaMurid" class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:outline-none bg-slate-50 font-medium">
+            <option value="">-- Sila Pilih Nama --</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Kata Laluan (Nombor Kad Pengenalan Tanpa Sempang):</label>
+          <input type="password" id="inputIcMurid" placeholder="Cth: 120619010891" class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:outline-none" />
+        </div>
+        <button onclick="loginMurid()" id="btnLoginMurid" class="w-full py-3 bg-teal-700 hover:bg-teal-800 text-white font-bold text-sm rounded-xl shadow-md transition flex items-center justify-center">
+          <i class="fa-solid fa-arrow-right-to-bracket mr-2"></i> Masuk Portal Ujian
+        </button>
+      </div>
+
+      <!-- Borang Guru -->
+      <div id="formGuru" class="space-y-4 hidden">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Kata Laluan Pentadbir / Guru:</label>
+          <input type="password" id="inputPassGuru" class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:outline-none" placeholder="Masukkan kata laluan guru" />
+        </div>
+        <button onclick="loginGuru()" class="w-full py-3 bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm rounded-xl shadow-md transition flex items-center justify-center">
+          <i class="fa-solid fa-lock-open mr-2"></i> Buka Mod Penandaan Guru
+        </button>
+      </div>
+
+      <div id="loginMsg" class="mt-4 text-center text-xs font-bold hidden"></div>
+    </section>
+
+    <!-- 2. PORTAL MURID -->
+    <section id="examSection" class="hidden space-y-6">
+      
+      <!-- KAD KEPUTUSAN GURU -->
+      <div id="panelKeputusanMurid" class="hidden bg-gradient-to-r from-emerald-900 to-teal-900 text-white rounded-2xl p-6 shadow-xl border border-emerald-500/30">
+        <div class="flex flex-wrap justify-between items-center gap-4 border-b border-emerald-700/50 pb-4">
+          <div>
+            <span class="px-3 py-1 bg-emerald-500 text-emerald-950 text-xs font-black rounded-full uppercase tracking-wider">
+              <i class="fa-solid fa-circle-check mr-1"></i> Kertas Telah Disemak
+            </span>
+            <h3 class="text-xl font-black mt-2">Keputusan Rasmi Penandaan Guru</h3>
+            <p class="text-xs text-emerald-200" id="tarikhTandaMurid"></p>
+          </div>
+          <button onclick="window.print()" class="px-4 py-2 bg-amber-400 hover:bg-amber-300 text-teal-950 font-bold text-xs rounded-xl shadow flex items-center transition no-print">
+            <i class="fa-solid fa-print mr-1.5"></i> Cetak Slip Keputusan
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 my-5 text-center">
+          <div class="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
+            <span class="text-[10px] text-emerald-200 uppercase font-bold">Jumlah Markah</span>
+            <p id="skorMuridJumlah" class="text-2xl font-black text-amber-300">0 / 50</p>
+          </div>
+          <div class="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
+            <span class="text-[10px] text-emerald-200 uppercase font-bold">Peratus (%)</span>
+            <p id="skorMuridPeratus" class="text-2xl font-black text-white">0%</p>
+          </div>
+          <div class="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
+            <span class="text-[10px] text-emerald-200 uppercase font-bold">Gred</span>
+            <p id="skorMuridGred" class="text-2xl font-black text-amber-400">-</p>
+          </div>
+        </div>
+
+        <div class="bg-black/20 p-4 rounded-xl border border-white/10">
+          <span class="text-xs font-bold text-emerald-300 flex items-center">
+            <i class="fa-solid fa-comment-dots mr-1.5"></i> Ulasan & Maklum Balas Guru:
+          </span>
+          <p id="teksUlasanGuruMurid" class="text-xs text-slate-100 mt-1 italic leading-relaxed whitespace-pre-wrap"></p>
+        </div>
+      </div>
+
+      <!-- Bar Maklumat Peperiksaan -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 flex flex-wrap justify-between items-center gap-4">
+        <div>
+          <h2 class="text-xl font-black text-slate-900">BAHAGIAN B [50 MARKAH]</h2>
+          <p class="text-xs text-slate-500 mt-1">
+            <span class="font-bold text-teal-700">Arahan:</span> Jawab semua soalan 1 hingga 19. Anda boleh menyimpan jawapan pada bila-bila masa.
+          </p>
+        </div>
+        <div class="flex items-center space-x-2 no-print">
+          <span id="saveStatus" class="text-xs bg-emerald-100 text-emerald-800 px-3.5 py-1.5 rounded-full font-bold shadow-sm">
+            <i class="fa-solid fa-check-circle mr-1"></i> Data Bersedia
+          </span>
+        </div>
+      </div>
+
+      <!-- Bar Navigasi Pantas (S1 - S19) -->
+      <div class="flex overflow-x-auto space-x-1.5 pb-2 no-print">
+        <script>
+          for (let i = 1; i <= 19; i++) {
+            document.write(`<a href="#soalan_card_${i}" class="px-2.5 py-1.5 bg-teal-50 hover:bg-teal-100 text-teal-900 border border-teal-200 font-bold text-xs rounded-lg whitespace-nowrap">S${i}</a>`);
+          }
+        </script>
+      </div>
+
+      <!-- BORANG SOALAN (S1 - S19) -->
+      <form id="soalanForm" onsubmit="event.preventDefault();" class="space-y-6">
+
+        <!-- SOALAN 1 -->
+        <div id="soalan_card_1" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex justify-between items-center border-b pb-2">
+            <span class="font-black text-slate-800 text-base">SOALAN 1</span>
+            <div class="flex items-center space-x-2">
+              <span id="badgeNilai_s1" class="hidden text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"></span>
+              <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[1 Markah]</span>
+            </div>
+          </div>
+          <div class="bg-slate-50 p-4 rounded-xl border flex flex-col md:flex-row items-center justify-between gap-3 text-xs">
+            <div class="p-3 bg-white rounded-lg border shadow-2xs font-medium text-slate-700 flex-1">
+              "Penutup balang gula yang tidak ketat senang dimasuki semut"
+            </div>
+            <i class="fa-solid fa-arrow-right text-teal-700 hidden md:block"></i>
+            <div class="p-3 bg-teal-50 border border-teal-200 rounded-lg shadow-2xs font-bold text-teal-900 flex-1">
+              "Penutup balang gula ditambah baik dengan mengetatkan penutup"
+            </div>
+          </div>
+          <p class="text-xs font-semibold text-slate-700">Tandakan (✓) pada situasi di atas sama ada masalah inventif atau bukan inventif:</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <label class="flex items-center p-3 bg-slate-50 border rounded-xl space-x-2 cursor-pointer hover:bg-teal-50">
+              <input type="radio" name="ans_s1" value="Masalah inventif" class="text-teal-600 focus:ring-teal-500" />
+              <span class="text-xs font-semibold text-slate-800">Masalah inventif</span>
+            </label>
+            <label class="flex items-center p-3 bg-slate-50 border rounded-xl space-x-2 cursor-pointer hover:bg-teal-50">
+              <input type="radio" name="ans_s1" value="Masalah bukan inventif" class="text-teal-600 focus:ring-teal-500" />
+              <span class="text-xs font-semibold text-slate-800">Masalah bukan inventif</span>
+            </label>
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
+            <span id="badge_status_1" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
+            <button type="button" onclick="hantarSoalan(1)" id="btn_soalan_1" class="px-5 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow transition">Simpan Soalan 1</button>
+          </div>
+        </div>
+
+        <!-- SOALAN 2 -->
+        <div id="soalan_card_2" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex justify-between items-center border-b pb-2">
+            <span class="font-black text-slate-800 text-base">SOALAN 2</span>
+            <div class="flex items-center space-x-2">
+              <span id="badgeNilai_s2" class="hidden text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"></span>
+              <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[3 Markah]</span>
+            </div>
+          </div>
+          <p class="text-sm font-semibold text-slate-800">Padankan parameter dengan contoh percanggahan fizikal yang diberi dengan menulis <strong>A, B</strong> dan <strong>C</strong> pada ruang yang disediakan:</p>
+          <div class="grid grid-cols-3 gap-2 bg-slate-50 p-3 rounded-xl text-xs font-bold text-center border">
+            <div>A : Ketinggian</div>
+            <div>B : Saiz</div>
+            <div>C : Beban</div>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
+              <span class="text-xs font-medium text-slate-700">Besar - kecil</span>
+              <input type="text" id="ans_s2_besar" maxlength="1" class="w-16 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="A/B/C" />
+            </div>
+            <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
+              <span class="text-xs font-medium text-slate-700">Berat - ringan</span>
+              <input type="text" id="ans_s2_berat" maxlength="1" class="w-16 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="A/B/C" />
+            </div>
+            <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
+              <span class="text-xs font-medium text-slate-700">Tinggi - rendah</span>
+              <input type="text" id="ans_s2_tinggi" maxlength="1" class="w-16 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="A/B/C" />
+            </div>
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
+            <span id="badge_status_2" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
+            <button type="button" onclick="hantarSoalan(2)" id="btn_soalan_2" class="px-5 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow transition">Simpan Soalan 2</button>
+          </div>
+        </div>
+
+        <!-- SOALAN 3 -->
+        <div id="soalan_card_3" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex justify-between items-center border-b pb-2">
+            <span class="font-black text-slate-800 text-base">SOALAN 3</span>
+            <div class="flex items-center space-x-2">
+              <span id="badgeNilai_s3" class="hidden text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"></span>
+              <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[3 Markah]</span>
+            </div>
+          </div>
+          <p class="text-sm font-semibold text-slate-800">Rajah menunjukkan carta alir proses penyelesaian masalah bukan inventif. Nyatakan perkara yang berlabel <strong>A, B</strong> dan <strong>C</strong>:</p>
+          <div class="p-3 bg-slate-50 rounded-xl border text-xs font-mono text-slate-700 text-center">
+            Mengenal pasti masalah ➔ [ A ] ➔ [ B ] ➔ [ C ] ➔ Menilai penyelesaian
+          </div>
+          <div class="space-y-3">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">A:</label>
+              <input type="text" id="ans_s3_a" class="w-full p-2.5 text-xs border rounded-xl" placeholder="Menyenaraikan pilihan penyelesaian..." />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">B:</label>
+              <input type="text" id="ans_s3_b" class="w-full p-2.5 text-xs border rounded-xl" placeholder="Membuat pilihan..." />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">C:</label>
+              <input type="text" id="ans_s3_c" class="w-full p-2.5 text-xs border rounded-xl" placeholder="Melaksanakan pilihan..." />
+            </div>
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
+            <span id="badge_status_3" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
+            <button type="button" onclick="hantarSoalan(3)" id="btn_soalan_3" class="px-5 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow transition">Simpan Soalan 3</button>
+          </div>
+        </div>
+
+        <!-- SOALAN 4 -->
+        <div id="soalan_card_4" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex justify-between items-center border-b pb-2">
+            <span class="font-black text-slate-800 text-base">SOALAN 4</span>
+            <div class="flex items-center space-x-2">
+              <span id="badgeNilai_s4" class="hidden text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"></span>
+              <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[5 Markah]</span>
+            </div>
+          </div>
+          <p class="text-sm font-semibold text-slate-800">Lengkapkan lima prinsip inventif bagi kaedah pemisahan ruang selain daripada <em>kualiti setempat</em> dan <em>tidak simetri</em> yang telah diberi:</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <input type="text" id="ans_s4_1" class="p-2.5 text-xs border rounded-xl" placeholder="1. Cth: Pembahagian" />
+            <input type="text" id="ans_s4_2" class="p-2.5 text-xs border rounded-xl" placeholder="2. Cth: Pengekstrakan" />
+            <input type="text" id="ans_s4_3" class="p-2.5 text-xs border rounded-xl" placeholder="3. Cth: Penyarangan" />
+            <input type="text" id="ans_s4_4" class="p-2.5 text-xs border rounded-xl" placeholder="4. Cth: Filem nipis / cangkerang lentur" />
+            <input type="text" id="ans_s4_5" class="p-2.5 text-xs border rounded-xl" placeholder="5. Cth: Pengantara" />
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
+            <span id="badge_status_4" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
+            <button type="button" onclick="hantarSoalan(4)" id="btn_soalan_4" class="px-5 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow transition">Simpan Soalan 4</button>
+          </div>
+        </div>
+
+        <!-- SOALAN 5 -->
+        <div id="soalan_card_5" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex justify-between items-center border-b pb-2">
+            <span class="font-black text-slate-800 text-base">SOALAN 5</span>
+            <div class="flex items-center space-x-2">
+              <span id="badgeNilai_s5" class="hidden text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"></span>
+              <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[3 Markah]</span>
+            </div>
+          </div>
+          <p class="text-sm font-semibold text-slate-800">Nyatakan maksud garisan interaksi di bawah:</p>
+          <div class="space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-slate-50 border rounded-xl gap-2">
+              <div class="flex items-center space-x-3">
+                <svg width="100" height="20"><line x1="5" y1="10" x2="90" y2="10" stroke="#0f172a" stroke-width="4" /></svg>
+                <span class="text-xs font-bold text-slate-700">(a) Anak panah garis tebal padu</span>
+              </div>
+              <input type="text" id="ans_s5_a" class="w-full sm:w-64 p-2 text-xs border rounded-lg" placeholder="Maksud simbol..." />
+            </div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-slate-50 border rounded-xl gap-2">
+              <div class="flex items-center space-x-3">
+                <svg width="100" height="20"><line x1="5" y1="10" x2="90" y2="10" stroke="#0f172a" stroke-width="2" stroke-dasharray="4 2" /></svg>
+                <span class="text-xs font-bold text-slate-700">(b) Anak panah garis putus-putus</span>
+              </div>
+              <input type="text" id="ans_s5_b" class="w-full sm:w-64 p-2 text-xs border rounded-lg" placeholder="Maksud simbol..." />
+            </div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-slate-50 border rounded-xl gap-2">
+              <div class="flex items-center space-x-3">
+                <svg width="100" height="20"><path d="M5 10 Q25 0 45 10 T85 10" fill="none" stroke="#0f172a" stroke-width="2.5" /></svg>
+                <span class="text-xs font-bold text-slate-700">(c) Anak panah garis beralun/zig-zag</span>
+              </div>
+              <input type="text" id="ans_s5_c" class="w-full sm:w-64 p-2 text-xs border rounded-lg" placeholder="Maksud simbol..." />
+            </div>
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
+            <span id="badge_status_5" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
+            <button type="button" onclick="hantarSoalan(5)" id="btn_soalan_5" class="px-5 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow transition">Simpan Soalan 5</button>
+          </div>
+        </div>
+
+        <!-- SOALAN 6 -->
+        <div id="soalan_card_6" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex justify-between items-center border-b pb-2">
+            <span class="font-black text-slate-800 text-base">SOALAN 6</span>
+            <div class="flex items-center space-x-2">
+              <span id="badgeNilai_s6" class="hidden text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"></span>
+              <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[3 Markah]</span>
+            </div>
+          </div>
+          <p class="text-sm font-semibold text-slate-800">Tandakan (✓) pada <strong>tiga peralatan</strong> yang digunakan pada kaedah konvensional:</p>
+          <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 text-center">
+            <label class="p-3 bg-slate-50 border rounded-xl flex flex-col items-center justify-between cursor-pointer hover:bg-teal-50">
+              <i class="fa-solid fa-hammer text-2xl text-slate-700 mb-2"></i>
+              <span class="text-xs font-bold">Tukul Kuku Kambing</span>
+              <input type="checkbox" id="chk_s6_tukul" class="mt-2 rounded text-teal-600 focus:ring-teal-500" />
+            </label>
+            <label class="p-3 bg-slate-50 border rounded-xl flex flex-col items-center justify-between cursor-pointer hover:bg-teal-50">
+              <i class="fa-solid fa-compact-disc text-2xl text-slate-700 mb-2"></i>
+              <span class="text-xs font-bold">Mesin Pengisar Sudut</span>
+              <input type="checkbox" id="chk_s6_grinder" class="mt-2 rounded text-teal-600 focus:ring-teal-500" />
+            </label>
+            <label class="p-3 bg-slate-50 border rounded-xl flex flex-col items-center justify-between cursor-pointer hover:bg-teal-50">
+              <i class="fa-solid fa-ruler-combined text-2xl text-slate-700 mb-2"></i>
+              <span class="text-xs font-bold">Pahat Tepi Serong</span>
+              <input type="checkbox" id="chk_s6_pahat" class="mt-2 rounded text-teal-600 focus:ring-teal-500" />
+            </label>
+            <label class="p-3 bg-slate-50 border rounded-xl flex flex-col items-center justify-between cursor-pointer hover:bg-teal-50">
+              <i class="fa-solid fa-screwdriver text-2xl text-slate-700 mb-2"></i>
+              <span class="text-xs font-bold">Gergaji Tangan</span>
+              <input type="checkbox" id="chk_s6_gergaji" class="mt-2 rounded text-teal-600 focus:ring-teal-500" />
+            </label>
+            <label class="p-3 bg-slate-50 border rounded-xl flex flex-col items-center justify-between cursor-pointer hover:bg-teal-50">
+              <i class="fa-solid fa-screwdriver-wrench text-2xl text-slate-700 mb-2"></i>
+              <span class="text-xs font-bold">Gerudi Tanpa Wayar</span>
+              <input type="checkbox" id="chk_s6_drill" class="mt-2 rounded text-teal-600 focus:ring-teal-500" />
+            </label>
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
+            <span id="badge_status_6" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
+            <button type="button" onclick="hantarSoalan(6)" id="btn_soalan_6" class="px-5 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow transition">Simpan Soalan 6</button>
+          </div>
+        </div>
+
+        <!-- SOALAN 7 -->
+        <div id="soalan_card_7" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex justify-between items-center border-b pb-2">
+            <span class="font-black text-slate-800 text-base">SOALAN 7</span>
+            <div class="flex items-center space-x-2">
+              <span id="badgeNilai_s7" class="hidden text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"></span>
+              <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[3 Markah]</span>
+            </div>
+          </div>
+          <p class="text-sm font-semibold text-slate-800">Tandakan (✓) bagi penerangan konsep cadangan prinsip inventif bagi kaedah pemisahan ruang (pisau serbaguna) yang betul dan (✗) bagi yang salah:</p>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
+              <span class="text-xs font-medium text-slate-700">(a) Membolehkan setiap bahagian objek dapat menjalankan fungsi yang berbeza</span>
+              <input type="text" id="ans_s7_1" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg" placeholder="✓ / ✗" />
+            </div>
+            <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
+              <span class="text-xs font-medium text-slate-700">(b) Menggunakan lapisan nipis untuk mengatasi masalah</span>
+              <input type="text" id="ans_s7_2" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg" placeholder="✓ / ✗" />
+            </div>
+            <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
+              <span class="text-xs font-medium text-slate-700">(c) Mengubah struktur objek daripada seragam kepada tidak seragam</span>
+              <input type="text" id="ans_s7_3" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg" placeholder="✓ / ✗" />
+            </div>
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
+            <span id="badge_status_7" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
+            <button type="button" onclick="hantarSoalan(7)" id="btn_soalan_7" class="px-5 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow transition">Simpan Soalan 7</button>
+          </div>
+        </div>
+
+        <!-- SOALAN 8 -->
+        <div id="soalan_card_8" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex justify-between items-center border-b pb-2">
+            <span class="font-black text-slate-800 text-base">SOALAN 8</span>
+            <div class="flex items-center space-x-2">
+              <span id="badgeNilai_s8" class="hidden text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"></span>
+              <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[2 Markah]</span>
+            </div>
+          </div>
+          <p class="text-sm font-semibold text-slate-800">Lengkapkan rajah proses pembuatan berikut dengan menulis <strong>A, B, C</strong> atau <strong>D</strong>:</p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-slate-50 p-3 rounded-xl text-xs font-bold text-center border">
+            <div>A : Lakaran/Lukisan</div>
+            <div>B : Kaji selidik</div>
+            <div>C : Penilaian</div>
+            <div>D : Pembinaan produk</div>
+          </div>
+          <div class="p-3 bg-slate-50 border rounded-xl text-xs flex flex-wrap items-center justify-center gap-2">
+            <span>Perancangan ➔</span>
+            <input type="text" id="ans_s8_i" maxlength="1" class="w-14 p-1.5 text-center font-bold border rounded-lg uppercase" placeholder="Huruf" />
+            <span>➔</span>
+            <input type="text" id="ans_s8_ii" maxlength="1" class="w-14 p-1.5 text-center font-bold border rounded-lg uppercase" placeholder="Huruf" />
+            <span>➔ Mock-up ➔ Model</span>
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
+            <span id="badge_status_8" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
+            <button type="button" onclick="hantarSoalan(8)" id="btn_soalan_8" class="px-5 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow transition">Simpan Soalan 8</button>
+          </div>
+        </div>
+
+        <!-- SOALAN 9 -->
+        <div id="soalan_card_9" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex justify-between items-center border-b pb-2">
+            <span class="font-black text-slate-800 text-base">SOALAN 9</span>
+            <div class="flex items-center space-x-2">
+              <span id="badgeNilai_s9" class="hidden text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"></span>
+              <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[3 Markah]</span>
+            </div>
+          </div>
+          <p class="text-sm font-semibold text-slate-800">Lengkapkan jadual contoh tuangan panas dan tuangan sejuk di bawah:</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-2 p-3 bg-amber-50/40 border border-amber-200 rounded-xl">
+              <span class="text-xs font-bold text-amber-900 block">Tuangan Panas:</span>
+              <div class="text-xs text-slate-600">• Besi keluli (Diberi)</div>
+              <input type="text" id="ans_s9_panas1" class="w-full p-2 text-xs border rounded-lg" placeholder="Contoh bahan (ii)..." />
+              <input type="text" id="ans_s9_panas2" class="w-full p-2 text-xs border rounded-lg" placeholder="Contoh bahan (iii)..." />
+            </div>
+            <div class="space-y-2 p-3 bg-teal-50/40 border border-teal-200 rounded-xl">
+              <span class="text-xs font-bold text-teal-900 block">Tuangan Sejuk:</span>
+              <input type="text" id="ans_s9_sejuk" class="w-full p-2 text-xs border rounded-lg" placeholder="Contoh bahan (i)..." />
+              <div class="text-xs text-slate-600">• Plaster of paris (Diberi)</div>
+            </div>
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
+            <span id="badge_status_9" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
+            <button type="button" onclick="hantarSoalan(9)" id="btn_soalan_9" class="px-5 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow transition">Simpan Soalan 9</button>
+          </div>
+        </div>
+
+        <!-- SOALAN 10 -->
+        <div id="soalan_card_10" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex justify-between items-center border-b pb-2">
+            <span class="font-black text-slate-800 text-base">SOALAN 10</span>
+            <div class="flex items-center space-x-2">
+              <span id="badgeNilai_s10" class="hidden text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"></span>
+              <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[2 Markah]</span>
+            </div>
+          </div>
+          <p class="text-sm font-semibold text-slate-800">Rajah menunjukkan proses <em>electroplating</em> pada sebentuk kunci. Isikan jawapan yang betul:</p>
+          <div class="space-y-3">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">(a) Plat logam yang disambung ke terminal positif bateri (Anod):</label>
+              <input type="text" id="ans_s10_anod" class="w-full p-2.5 text-xs border rounded-xl" placeholder="Kepingan logam / Kuprum..." />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">(b) Cecair larutan kimia yang digunakan (Elektrolit):</label>
+              <input type="text" id="ans_s10_cecair" class="w-full p-2.5 text-xs border rounded-xl" placeholder="Larutan elektrolit / Kuprum sulfat..." />
+            </div>
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
+            <span id="badge_status_10" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
+            <button type="button" onclick="hantarSoalan(10)" id="btn_soalan_10" class="px-5 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow transition">Simpan Soalan 10</button>
+          </div>
+        </div>
+
+        <!-- SOALAN 11 -->
+        <div id="soalan_card_11" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex justify-between items-center border-b pb-2">
+            <span class="font-black text-slate-800 text-base">SOALAN 11</span>
+            <div class="flex items-center space-x-2">
+              <span id="badgeNilai_s11" class="hidden text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"></span>
+              <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[3 Markah]</span>
+            </div>
+          </div>
+          <p class="text-sm font-semibold text-slate-800">Tandakan (✓) bagi pernyataan tentang teknologi pembuatan moden yang betul dan (✗) bagi yang salah:</p>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
+              <span class="text-xs font-medium text-slate-700">(a) Menggunakan alatan mesin seperti gergaji jig</span>
+              <input type="text" id="ans_s11_1" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg" placeholder="✓ / ✗" />
+            </div>
+            <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
+              <span class="text-xs font-medium text-slate-700">(b) Penghasilan produk akan mengambil masa yang lama</span>
+              <input type="text" id="ans_s11_2" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg" placeholder="✓ / ✗" />
+            </div>
+            <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
+              <span class="text-xs font-medium text-slate-700">(c) Memerlukan tenaga kerja yang mahir</span>
+              <input type="text" id="ans_s11_3" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg" placeholder="✓ / ✗" />
+            </div>
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
+            <span id="badge_status_11" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
+            <button type="button" onclick="hantarSoalan(11)" id="btn_soalan_11" class="px-5 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow transition">Simpan Soalan 11</button>
+          </div>
+        </div>
+
+        <!-- SOALAN 12 -->
+        <div id="soalan_card_12" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex justify-between items-center border-b pb-2">
+            <span class="font-black text-slate-800 text-base">SOALAN 12</span>
+            <div class="flex items-center space-x-2">
+              <span id="badgeNilai_s12" class="hidden text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"></span>
+              <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[5 Markah]</span>
+            </div>
+          </div>
+          <p class="text-sm font-semibold text-slate-800">Lengkapkan baki lima aspek perbezaan kaedah konvensional dan moden selain <em>Masa</em> dan <em>Hasil</em>:</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <input type="text" id="ans_s12_1" class="p-2.5 text-xs border rounded-xl" placeholder="Aspek iii (Cth: Kos)" />
+            <input type="text" id="ans_s12_2" class="p-2.5 text-xs border rounded-xl" placeholder="Aspek iv (Cth: Tenaga kerja)" />
+            <input type="text" id="ans_s12_3" class="p-2.5 text-xs border rounded-xl" placeholder="Aspek v (Cth: Kuantiti)" />
+            <input type="text" id="ans_s12_4" class="p-2.5 text-xs border rounded-xl" placeholder="Aspek vi (Cth: Kualiti)" />
+            <input type="text" id="ans_s12_5" class="p-2.5 text-xs border rounded-xl" placeholder="Aspek vii (Cth: Estetika)" />
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
+            <span id="badge_status_12" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
+            <button type="button" onclick="hantarSoalan(12)" id="btn_soalan_12" class="px-5 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow transition">Simpan Soalan 12</button>
+          </div>
+        </div>
+
+        <!-- SOALAN 13 -->
+        <div id="soalan_card_13" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex justify-between items-center border-b pb-2">
+            <span class="font-black text-slate-800 text-base">SOALAN 13</span>
+            <div class="flex items-center space-x-2">
+              <span id="badgeNilai_s13" class="hidden text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"></span>
+              <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[2 Markah]</span>
+            </div>
+          </div>
+          <p class="text-sm font-semibold text-slate-800">Nyatakan dua jenis model dalam pembinaan produk:</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <input type="text" id="ans_s13_1" class="p-2.5 text-xs border rounded-xl" placeholder="1. Cth: Model statik" />
+            <input type="text" id="ans_s13_2" class="p-2.5 text-xs border rounded-xl" placeholder="2. Cth: Model berfungsi" />
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
+            <span id="badge_status_13" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
+            <button type="button" onclick="hantarSoalan(13)" id="btn_soalan_13" class="px-5 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow transition">Simpan Soalan 13</button>
+          </div>
+        </div>
+
+        <!-- SOALAN 14 -->
+        <div id="soalan_card_14" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex justify-between items-center border-b pb-2">
+            <span class="font-black text-slate-800 text-base">SOALAN 14</span>
+            <div class="flex items-center space-x-2">
+              <span id="badgeNilai_s14" class="hidden text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"></span>
+              <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[2 Markah]</span>
+            </div>
+          </div>
+          <p class="text-sm font-semibold text-slate-800">Lengkapkan proses dalam menghasilkan acuan model 3D:</p>
+          <div class="space-y-2 text-xs">
+            <div class="p-2.5 bg-slate-50 border rounded-xl text-slate-600 font-semibold">i. Menghasilkan model awal 3D (Diberi)</div>
+            <input type="text" id="ans_s14_ii" class="w-full p-2.5 border rounded-xl" placeholder="ii. Cth: Membuat acuan..." />
+            <input type="text" id="ans_s14_iii" class="w-full p-2.5 border rounded-xl" placeholder="iii. Cth: Menuang bahan tuangan..." />
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
+            <span id="badge_status_14" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
+            <button type="button" onclick="hantarSoalan(14)" id="btn_soalan_14" class="px-5 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow transition">Simpan Soalan 14</button>
+          </div>
+        </div>
+
+        <!-- SOALAN 15 -->
+        <div id="soalan_card_15" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex justify-between items-center border-b pb-2">
+            <span class="font-black text-slate-800 text-base">SOALAN 15</span>
+            <div class="flex items-center space-x-2">
+              <span id="badgeNilai_s15" class="hidden text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"></span>
+              <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[3 Markah]</span>
+            </div>
+          </div>
+          <p class="text-sm font-semibold text-slate-800">Padankan maksud istilah berikut dengan menulis <strong>A, B</strong> atau <strong>C</strong>:</p>
+          <div class="grid grid-cols-3 gap-2 bg-slate-50 p-3 rounded-xl text-xs font-bold text-center border">
+            <div>A : Makanan</div>
+            <div>B : Reka bentuk</div>
+            <div>C : Reka bentuk makanan</div>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl gap-2">
+              <span class="text-xs font-medium text-slate-700">Aktiviti merealisasikan idea kepada bentuk makanan yang melibatkan inovasi dan kreativiti</span>
+              <input type="text" id="ans_s15_1" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="A/B/C" />
+            </div>
+            <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl gap-2">
+              <span class="text-xs font-medium text-slate-700">Bahan yang boleh dimakan dalam bentuk pepejal atau cecair</span>
+              <input type="text" id="ans_s15_2" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="A/B/C" />
+            </div>
+            <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl gap-2">
+              <span class="text-xs font-medium text-slate-700">Pengetahuan tentang penghasilan idea secara terancang untuk menghasilkan sesuatu produk</span>
+              <input type="text" id="ans_s15_3" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="A/B/C" />
+            </div>
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
+            <span id="badge_status_15" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
+            <button type="button" onclick="hantarSoalan(15)" id="btn_soalan_15" class="px-5 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow transition">Simpan Soalan 15</button>
+          </div>
+        </div>
+
+        <!-- SOALAN 16 -->
+        <div id="soalan_card_16" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex justify-between items-center border-b pb-2">
+            <span class="font-black text-slate-800 text-base">SOALAN 16</span>
+            <div class="flex items-center space-x-2">
+              <span id="badgeNilai_s16" class="hidden text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"></span>
+              <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[2 Markah]</span>
+            </div>
+          </div>
+          <p class="text-sm font-semibold text-slate-800">Nyatakan dua klasifikasi reka bentuk makanan:</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <input type="text" id="ans_s16_1" class="p-2.5 text-xs border rounded-xl" placeholder="1. Cth: Reka bentuk susunan dan hiasan makanan" />
+            <input type="text" id="ans_s16_2" class="p-2.5 text-xs border rounded-xl" placeholder="2. Cth: Reka bentuk makanan itu sendiri" />
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
+            <span id="badge_status_16" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
+            <button type="button" onclick="hantarSoalan(16)" id="btn_soalan_16" class="px-5 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow transition">Simpan Soalan 16</button>
+          </div>
+        </div>
+
+        <!-- SOALAN 17 -->
+        <div id="soalan_card_17" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex justify-between items-center border-b pb-2">
+            <span class="font-black text-slate-800 text-base">SOALAN 17</span>
+            <div class="flex items-center space-x-2">
+              <span id="badgeNilai_s17" class="hidden text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"></span>
+              <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[3 Markah]</span>
+            </div>
+          </div>
+          <p class="text-sm font-semibold text-slate-800">Padankan alatan menghias berikut dengan menulis <strong>A, B</strong> atau <strong>C</strong>:</p>
+          <div class="grid grid-cols-3 gap-2 bg-slate-50 p-3 rounded-xl text-xs font-bold text-center border">
+            <div>A : Tiub aising</div>
+            <div>B : Pisau pelepa</div>
+            <div>C : Beg aising</div>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
+              <span class="text-xs font-medium text-slate-700">(a) Memegang aising dan memicit keluar melalui nozel corak</span>
+              <input type="text" id="ans_s17_1" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="A/B/C" />
+            </div>
+            <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
+              <span class="text-xs font-medium text-slate-700">(b) Pelbagai corak muncung keluli untuk membentuk bunga/tepi kek</span>
+              <input type="text" id="ans_s17_2" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="A/B/C" />
+            </div>
+            <div class="flex items-center justify-between p-3 bg-slate-50 border rounded-xl">
+              <span class="text-xs font-medium text-slate-700">(c) Meratakan krim aising pada permukaan kek</span>
+              <input type="text" id="ans_s17_3" maxlength="1" class="w-14 p-2 text-center text-sm font-bold border rounded-lg uppercase" placeholder="A/B/C" />
+            </div>
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
+            <span id="badge_status_17" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
+            <button type="button" onclick="hantarSoalan(17)" id="btn_soalan_17" class="px-5 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow transition">Simpan Soalan 17</button>
+          </div>
+        </div>
+
+        <!-- SOALAN 18 -->
+        <div id="soalan_card_18" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex justify-between items-center border-b pb-2">
+            <span class="font-black text-slate-800 text-base">SOALAN 18</span>
+            <div class="flex items-center space-x-2">
+              <span id="badgeNilai_s18" class="hidden text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"></span>
+              <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[4 Markah]</span>
+            </div>
+          </div>
+          <p class="text-sm font-semibold text-slate-800">Senaraikan <strong>empat</strong> daripada lapan elemen yang perlu ada pada sesuatu pembungkusan makanan:</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <input type="text" id="ans_s18_1" class="p-2.5 text-xs border rounded-xl" placeholder="a. Cth: Keselamatan" />
+            <input type="text" id="ans_s18_2" class="p-2.5 text-xs border rounded-xl" placeholder="b. Cth: Maklumat / Pelabelan" />
+            <input type="text" id="ans_s18_3" class="p-2.5 text-xs border rounded-xl" placeholder="c. Cth: Jenama" />
+            <input type="text" id="ans_s18_4" class="p-2.5 text-xs border rounded-xl" placeholder="d. Cth: Tipografi / Warna" />
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
+            <span id="badge_status_18" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
+            <button type="button" onclick="hantarSoalan(18)" id="btn_soalan_18" class="px-5 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow transition">Simpan Soalan 18</button>
+          </div>
+        </div>
+
+        <!-- SOALAN 19 -->
+        <div id="soalan_card_19" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex justify-between items-center border-b pb-2">
+            <span class="font-black text-slate-800 text-base">SOALAN 19</span>
+            <div class="flex items-center space-x-2">
+              <span id="badgeNilai_s19" class="hidden text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200"></span>
+              <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-bold">[3 Markah]</span>
+            </div>
+          </div>
+          <p class="text-sm font-semibold text-slate-800">Susun langkah penilaian reka bentuk makanan mengikut urutan yang betul dengan menulis <strong>A, B</strong> dan <strong>C</strong>:</p>
+          <div class="space-y-2 bg-slate-50 p-3 rounded-xl text-xs border">
+            <div><strong>A :</strong> Hasil terakhir reka bentuk makanan perlulah memenuhi kriteria yang ditetapkan</div>
+            <div><strong>B :</strong> Lakaran perkembangan idea perlu mempunyai identiti tersendiri</div>
+            <div><strong>C :</strong> Pemilihan bahan, alatan dan teknik yang betul</div>
+          </div>
+          <div class="flex items-center justify-center gap-2 p-3 bg-slate-50 border rounded-xl text-xs font-bold">
+            <span>Langkah 1:</span>
+            <input type="text" id="ans_s19_1" maxlength="1" class="w-14 p-1.5 text-center border rounded-lg uppercase" placeholder="Huruf" />
+            <span>➔ Langkah 2:</span>
+            <input type="text" id="ans_s19_2" maxlength="1" class="w-14 p-1.5 text-center border rounded-lg uppercase" placeholder="Huruf" />
+            <span>➔ Langkah 3:</span>
+            <input type="text" id="ans_s19_3" maxlength="1" class="w-14 p-1.5 text-center border rounded-lg uppercase" placeholder="Huruf" />
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t bg-slate-50 p-3 rounded-xl gap-2 no-print">
+            <span id="badge_status_19" class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
+            <button type="button" onclick="hantarSoalan(19)" id="btn_soalan_19" class="px-5 py-2 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-xl shadow transition">Simpan Soalan 19</button>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow border border-slate-200 text-center space-y-3 no-print">
+          <p class="text-xs text-slate-500">Pastikan anda telah menyemak semua soalan 1 hingga 19 sebelum menghantar secara muktamad.</p>
+          <button type="button" onclick="submitSemuaJawapan()" id="btnHantarSemua" class="px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm rounded-xl shadow-lg transition transform hover:-translate-y-0.5">
+            <i class="fa-solid fa-paper-plane mr-2"></i> Hantar Semua Jawapan Peperiksaan
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- 3. MOD GURU (ADMIN) -->
+    <section id="guruSection" class="hidden space-y-6">
+      
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 space-y-4">
+        <div class="flex flex-wrap justify-between items-center gap-3">
+          <div>
+            <h2 class="text-lg font-black text-slate-900 flex items-center">
+              <i class="fa-solid fa-table-cells text-teal-600 mr-2"></i> Matriks Calon PPT RBT Tingkatan 2 (S1 - S19)
+            </h2>
+            <p class="text-xs text-slate-500">Pantau kemajuan 26 orang calon menjawab secara langsung.</p>
+          </div>
+          <button onclick="tarikDariGoogleSheet(true)" id="btnSegerak" class="px-3.5 py-2 bg-teal-700 hover:bg-teal-800 text-white text-xs font-bold rounded-xl shadow transition flex items-center">
+            <i class="fa-solid fa-arrows-rotate mr-1.5"></i> Segerak Semula
+          </button>
+        </div>
+
+        <div id="statusSegerakBox" class="text-xs font-medium text-slate-500 bg-slate-50 p-2 rounded-lg border">
+          <i class="fa-solid fa-info-circle mr-1 text-teal-600"></i> Klik 'Segerak Semula' untuk muat turun penyerahan terkini Google Sheet.
+        </div>
+
+        <!-- Matriks 19 Soalan -->
+        <div class="overflow-x-auto border border-slate-200 rounded-xl shadow-sm max-h-[480px]">
+          <table class="min-w-full divide-y divide-slate-200 text-xs">
+            <thead class="bg-slate-800 text-white sticky top-0">
+              <tr>
+                <th class="py-2.5 px-3 text-left font-bold w-8">Bil</th>
+                <th class="py-2.5 px-3 text-left font-bold min-w-[200px]">Nama Calon</th>
+                <script>
+                  for (let i = 1; i <= 19; i++) {
+                    document.write(`<th class="py-2 px-1 text-center font-bold">S${i}</th>`);
+                  }
+                </script>
+                <th class="py-2.5 px-3 text-center font-bold">Kemajuan</th>
+                <th class="py-2.5 px-3 text-center font-bold">Tindakan</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyMatriksCalon" class="divide-y divide-slate-200 bg-white"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PANEL PENANDAAN -->
+      <div id="panelMenandaGuru" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 space-y-4">
+        <div class="flex flex-wrap justify-between items-center gap-4">
+          <div>
+            <h2 class="text-xl font-black text-slate-900 flex items-center">
+              <i class="fa-solid fa-robot text-amber-500 mr-2"></i> Ruang Semakan & Penandaan AI
+            </h2>
+            <p class="text-xs text-slate-500">Cadangan markah pintar berasaskan kata kunci skema rasmi DSKP Tingkatan 2.</p>
+          </div>
+          <div class="flex items-center space-x-2">
+            <button onclick="terapkanSemuaCadanganAI()" class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-teal-950 text-xs font-black rounded-xl shadow transition">
+              <i class="fa-solid fa-wand-magic-sparkles mr-1.5"></i> Terapkan Semua Cadangan AI
+            </button>
+            <button onclick="window.print()" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold rounded-xl shadow transition">
+              <i class="fa-solid fa-print mr-1.5"></i> Cetak
+            </button>
+          </div>
+        </div>
+
+        <div class="pt-2 border-t">
+          <label class="block text-xs font-bold text-slate-700 mb-1">Pilih Calon untuk Ditanda:</label>
+          <select id="selectMuridMenanda" onchange="muatJawapanMuridDipilih()" class="px-3.5 py-2.5 text-sm border rounded-xl bg-slate-50 font-bold text-slate-800 w-full sm:w-auto min-w-[340px]">
+            <option value="">-- Sila Pilih Calon --</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+          <div class="bg-slate-50 p-3 rounded-xl border text-center shadow-sm">
+            <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Jumlah Markah</span>
+            <p id="liveJumlahMarkah" class="text-2xl font-black text-emerald-600">0 / 50</p>
+          </div>
+          <div class="bg-slate-50 p-3 rounded-xl border text-center shadow-sm">
+            <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Peratusan (%)</span>
+            <p id="livePeratusan" class="text-2xl font-black text-teal-700">0%</p>
+          </div>
+          <div class="bg-slate-50 p-3 rounded-xl border text-center shadow-sm">
+            <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Gred</span>
+            <p id="liveGred" class="text-2xl font-black text-amber-500">-</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="containerPenandaan" class="space-y-4"></div>
+
+      <div class="bg-white p-6 rounded-2xl shadow border border-slate-200 space-y-4">
+        <div>
+          <label class="block text-sm font-bold text-slate-800 mb-1">Ulasan & Maklum Balas Guru kepada Calon:</label>
+          <textarea id="ulasanGuru" rows="3" class="w-full p-3 text-sm border rounded-xl focus:ring-2 focus:ring-amber-500" placeholder="Tuliskan ulasan pencapaian calon di sini..."></textarea>
+        </div>
+        <div class="flex justify-end">
+          <button onclick="simpanPemarkahanGuru()" class="px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm rounded-xl shadow-lg transition">
+            <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Rekod Markah & Hantar ke Portal Calon
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="bg-slate-200 text-slate-600 text-[11px] text-center py-4 border-t no-print">
+    Sistem e-Ujian RBT Tingkatan 2 &copy; 2026. Dikuasakan oleh GitHub Pages & Google Apps Script.
+  </footer>
+
+  <!-- SKRIP JAVASCRIPT SISTEM -->
+  <script>
+    // WEB APP URL BAHARU
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxy2_jh3ay-dBZIbeWcTE-CMFDb5WefKKu-HY5Hz8xv-9b2e994KHyLTMRFpAfbZZG93Q/exec";
+
+    // SENARAI 26 ORANG MURID TINGKATAN 2
+    const SENARAI_MURID = [
+      { nama: "ABDUL AL MUZHAFFAR BIN ABD KADIR", ic: "120619010891" },
+      { nama: "AQIL NAUFAL BIN MOHD ASRI", ic: "121129010471" },
+      { nama: "CHONG YIN EN", ic: "120727120844" },
+      { nama: "DHIKSHAA A/P SUKUMARAN", ic: "120402011172" },
+      { nama: "GOH YU LING", ic: "120722010224" },
+      { nama: "MOHAMMAD HAKIMI BIN ABDULLAH", ic: "120825040493" },
+      { nama: "MOHAMMAD KHAMARUL ASRAF BIN ROSLY", ic: "120805030239" },
+      { nama: "MUHAMMAD ASHRAF DANISH BIN HAIROL", ic: "120112010489" },
+      { nama: "MUHAMMAD AZIEM MUNIR BIN MINHED", ic: "121111011361" },
+      { nama: "MUHAMMAD DANISH FITRI BIN NORAISHAM", ic: "120725011601" },
+      { nama: "MUHAMMAD HAFIEQ DANIEL BIN MOHD NOR", ic: "120619011675" },
+      { nama: "MUHAMMAD HARIZ HAQIMIE BIN YUSOF", ic: "121001011299" },
+      { nama: "MUHAMMAD HAZWAN WAFIY BIN MOHD SAUFI", ic: "121101011309" },
+      { nama: "MUHAMMAD ILMAN HAZIQ BIN AKHMAL HISAM", ic: "120830010109" },
+      { nama: "MUHAMMAD KAUSAR BIN MOHD IZZUAN", ic: "120919010607" },
+      { nama: "MUHAMMAD QAISKU FIQRY BIN MOHD FAUZI", ic: "120916011313" },
+      { nama: "MUHAMMAD RAIHAN BIN MOHD FAIZAL", ic: "120922011141" },
+      { nama: "MUHAMMAD RIZQI RAMADHAN BIN MUJIKO", ic: "120805011193" },
+      { nama: "MUHAMMAD SHAHLEEZAN BIN ABDULLAH", ic: "120630011203" },
+      { nama: "MUHAMMAD SHAHRIZWAN BIN ABDULLAH", ic: "120202050409" },
+      { nama: "NUR QAMARINA BINTI ABDULLAH", ic: "120917011606" },
+      { nama: "PUTRI AYU NAJIHA BINTI MOHD FADLY", ic: "120307010710" },
+      { nama: "TAN YING RU", ic: "111106010250" },
+      { nama: "TAN ZI SHAN", ic: "120526011342" },
+      { nama: "WONG LI XIAN", ic: "111101011473" },
+      { nama: "WONG YEE TING", ic: "121001011686" }
+    ];
+
+    // DATA SKEMA JAWAPAN & KATA KUNCI AI TINGKATAN 2 (S1 - S19)
+    const SKEMA_DATA = {
+      "s1": {
+        tajuk: "Soalan 1 - Pengenalan Masalah Inventif / Bukan Inventif",
+        max: 1,
+        kriteria: [{ words: ["bukan inventif"], point: 1, label: "Masalah bukan inventif" }],
+        skema: `[1 Markah]:\nJawapan: Masalah bukan inventif [1m]\n(Penerangan: Usaha mengetatkan penutup balang gula tidak membawa sebarang kesan sampingan).`
+      },
+      "s2": {
+        tajuk: "Soalan 2 - Parameter Percanggahan Fizikal",
+        max: 3,
+        kriteria: [
+          { words: ["b"], point: 1, label: "Besar-kecil: B (Saiz)" },
+          { words: ["c"], point: 1, label: "Berat-ringan: C (Beban)" },
+          { words: ["a"], point: 1, label: "Tinggi-rendah: A (Ketinggian)" }
+        ],
+        skema: `[3 Markah]:\n• Besar - kecil: B (Saiz) [1m]\n• Berat - ringan: C (Beban) [1m]\n• Tinggi - rendah: A (Ketinggian) [1m]`
+      },
+      "s3": {
+        tajuk: "Soalan 3 - Alir Proses Masalah Bukan Inventif",
+        max: 3,
+        kriteria: [
+          { words: ["senarai", "cadangan", "pilihan"], point: 1, label: "A: Menyenaraikan pilihan penyelesaian" },
+          { words: ["buat pilihan", "membuat pilihan"], point: 1, label: "B: Membuat pilihan" },
+          { words: ["laksana", "melaksana"], point: 1, label: "C: Melaksanakan pilihan" }
+        ],
+        skema: `[3 Markah]:\nA: Menyenaraikan pilihan untuk menyelesaikan masalah [1m]\nB: Membuat pilihan [1m]\nC: Melaksanakan pilihan [1m]`
+      },
+      "s4": {
+        tajuk: "Soalan 4 - Prinsip Inventif Pemisahan Ruang",
+        max: 5,
+        kriteria: [
+          { words: ["pembahagian"], point: 1, label: "Pembahagian" },
+          { words: ["pengekstrakan"], point: 1, label: "Pengekstrakan" },
+          { words: ["penyarangan"], point: 1, label: "Penyarangan" },
+          { words: ["filem nipis", "cangkerang"], point: 1, label: "Filem nipis dan cangkerang boleh lentur" },
+          { words: ["pengantara"], point: 1, label: "Pengantara" }
+        ],
+        skema: `[5 Markah]:\nMana-mana 5 prinsip pemisahan ruang berikut [5m]:\n1. Pembahagian\n2. Pengekstrakan\n3. Penyarangan\n4. Filem nipis dan cangkerang boleh lentur\n5. Pengantara`
+      },
+      "s5": {
+        tajuk: "Soalan 5 - Garisan Interaksi Model Fungsi",
+        max: 3,
+        kriteria: [
+          { words: ["berlebihan"], point: 1, label: "(a) Berguna tetapi berlebihan" },
+          { words: ["tidak mencukupi"], point: 1, label: "(b) Berguna tetapi tidak mencukupi" },
+          { words: ["bermasalah", "bahaya"], point: 1, label: "(c) Bermasalah (berbahaya)" }
+        ],
+        skema: `[3 Markah]:\n(a) Berguna tetapi berlebihan [1m]\n(b) Berguna tetapi tidak mencukupi [1m]\n(c) Bermasalah (berbahaya) [1m]`
+      },
+      "s6": {
+        tajuk: "Soalan 6 - Peralatan Kaedah Konvensional",
+        max: 3,
+        kriteria: [
+          { words: ["tukul"], point: 1, label: "Tukul kuku kambing" },
+          { words: ["pahat"], point: 1, label: "Pahat tepi serong" },
+          { words: ["gergaji tangan", "gergaji"], point: 1, label: "Gergaji tangan" }
+        ],
+        skema: `[3 Markah]:\nTanda (✓) pada 3 alat konvensional [3m]:\n• Tukul kuku kambing\n• Pahat tepi serong\n• Gergaji tangan`
+      },
+      "s7": {
+        tajuk: "Soalan 7 - Prinsip Pemisahan Ruang Pisau Serbaguna",
+        max: 3,
+        kriteria: [
+          { words: ["✓", "/", "betul"], point: 1, label: "(a) Benar [✓]" },
+          { words: ["✗", "x", "salah"], point: 1, label: "(b) Palsu [✗]" },
+          { words: ["✓", "/", "betul"], point: 1, label: "(c) Benar [✓]" }
+        ],
+        skema: `[3 Markah]:\n(a) ✓ (Kualiti setempat) [1m]\n(b) ✗ [1m]\n(c) ✓ (Tidak simetri) [1m]`
+      },
+      "s8": {
+        tajuk: "Soalan 8 - Alir Proses Pembuatan Produk",
+        max: 2,
+        kriteria: [
+          { words: ["b"], point: 1, label: "Langkah i: B (Kaji selidik)" },
+          { words: ["a"], point: 1, label: "Langkah ii: A (Lakaran/Lukisan)" }
+        ],
+        skema: `[2 Markah]:\ni. B (Kaji selidik) [1m]\nii. A (Lakaran/Lukisan) [1m]`
+      },
+      "s9": {
+        tajuk: "Soalan 9 - Contoh Bahan Tuangan Panas & Sejuk",
+        max: 3,
+        kriteria: [
+          { words: ["timah", "tembaga", "plastik", "zink", "besi"], point: 1, label: "Tuangan Panas (ii)" },
+          { words: ["tembaga", "timah", "plastik", "zink", "timah"], point: 1, label: "Tuangan Panas (iii)" },
+          { words: ["epoxy", "resin", "lilin"], point: 1, label: "Tuangan Sejuk (i)" }
+        ],
+        skema: `[3 Markah]:\nTuangan Panas: Mana-mana dua (Timah / Tembaga / Plastik) [2m]\nTuangan Sejuk: Epoxy resin / Lilin [1m]`
+      },
+      "s10": {
+        tajuk: "Soalan 10 - Proses Saduran Elektrik (Electroplating)",
+        max: 2,
+        kriteria: [
+          { words: ["kuprum", "plat", "anod", "logam"], point: 1, label: "Anod / Plat Kuprum" },
+          { words: ["elektrolit", "kuprum sulfat", "larutan"], point: 1, label: "Larutan Elektrolit / Kuprum Sulfat" }
+        ],
+        skema: `[2 Markah]:\n(a) Kepingan kuprum / Plat tembaga (Anod) [1m]\n(b) Larutan elektrolit (Kuprum sulfat) [1m]`
+      },
+      "s11": {
+        tajuk: "Soalan 11 - Ciri Teknologi Pembuatan Moden",
+        max: 3,
+        kriteria: [
+          { words: ["✓", "/", "betul"], point: 1, label: "(a) Benar [✓]" },
+          { words: ["✗", "x", "salah"], point: 1, label: "(b) Palsu [✗]" },
+          { words: ["✓", "/", "betul"], point: 1, label: "(c) Benar [✓]" }
+        ],
+        skema: `[3 Markah]:\n(a) ✓ [1m]\n(b) ✗ [1m]\n(c) ✓ [1m]`
+      },
+      "s12": {
+        tajuk: "Soalan 12 - Tujuh Aspek Perbezaan Kaedah",
+        max: 5,
+        kriteria: [
+          { words: ["kos"], point: 1, label: "Aspek: Kos" },
+          { words: ["tenaga", "pekerja"], point: 1, label: "Aspek: Tenaga kerja" },
+          { words: ["kuantiti"], point: 1, label: "Aspek: Kuantiti" },
+          { words: ["kualiti"], point: 1, label: "Aspek: Kualiti" },
+          { words: ["estetika"], point: 1, label: "Aspek: Estetika" }
+        ],
+        skema: `[5 Markah]:\n5 Aspek (1m setiap satu):\n• Kos\n• Tenaga kerja\n• Kuantiti\n• Kualiti\n• Estetika`
+      },
+      "s13": {
+        tajuk: "Soalan 13 - Dua Jenis Model",
+        max: 2,
+        kriteria: [
+          { words: ["statik", "pegun"], point: 1, label: "Model Statik" },
+          { words: ["berfungsi"], point: 1, label: "Model Berfungsi" }
+        ],
+        skema: `[2 Markah]:\n1. Model statik (separa berfungsi / pegun) [1m]\n2. Model berfungsi (berfungsi sepenuhnya) [1m]`
+      },
+      "s14": {
+        tajuk: "Soalan 14 - Proses Menghasilkan Acuan Model 3D",
+        max: 2,
+        kriteria: [
+          { words: ["buat acuan", "membina acuan", "acuan"], point: 1, label: "ii. Membuat acuan" },
+          { words: ["tuang", "menuang"], point: 1, label: "iii. Menuang bahan tuangan" }
+        ],
+        skema: `[2 Markah]:\nii. Membuat acuan [1m]\niii. Menuang bahan tuangan / Tuangan [1m]`
+      },
+      "s15": {
+        tajuk: "Soalan 15 - Istilah Reka Bentuk Makanan",
+        max: 3,
+        kriteria: [
+          { words: ["c"], point: 1, label: "Definisi 1: C (Reka bentuk makanan)" },
+          { words: ["a"], point: 1, label: "Definisi 2: A (Makanan)" },
+          { words: ["b"], point: 1, label: "Definisi 3: B (Reka bentuk)" }
+        ],
+        skema: `[3 Markah]:\n• Aktiviti merealisasikan idea... : C [1m]\n• Bahan yang boleh dimakan... : A [1m]\n• Pengetahuan tentang penghasilan idea... : B [1m]`
+      },
+      "s16": {
+        tajuk: "Soalan 16 - Klasifikasi Reka Bentuk Makanan",
+        max: 2,
+        kriteria: [
+          { words: ["susunan", "hiasan", "pinggan"], point: 1, label: "Reka bentuk susunan dan hiasan makanan" },
+          { words: ["makanan itu sendiri", "bentuk makanan"], point: 1, label: "Reka bentuk makanan itu sendiri" }
+        ],
+        skema: `[2 Markah]:\n1. Reka bentuk susunan dan hiasan makanan [1m]\n2. Reka bentuk makanan itu sendiri [1m]`
+      },
+      "s17": {
+        tajuk: "Soalan 17 - Alatan Menghias Makanan",
+        max: 3,
+        kriteria: [
+          { words: ["c"], point: 1, label: "(a) Beg aising [C]" },
+          { words: ["a"], point: 1, label: "(b) Tiub aising [A]" },
+          { words: ["b"], point: 1, label: "(c) Pisau pelepa [B]" }
+        ],
+        skema: `[3 Markah]:\n(a) C (Beg aising) [1m]\n(b) A (Tiub aising) [1m]\n(c) B (Pisau pelepa) [1m]`
+      },
+      "s18": {
+        tajuk: "Soalan 18 - Elemen Pembungkusan Makanan",
+        max: 4,
+        kriteria: [
+          { words: ["keselamatan"], point: 1, label: "Keselamatan" },
+          { words: ["maklumat", "label"], point: 1, label: "Maklumat / Pelabelan" },
+          { words: ["jenama"], point: 1, label: "Jenama" },
+          { words: ["tipografi", "warna", "ilustrasi", "saiz"], point: 1, label: "Tipografi / Warna / Ilustrasi / Saiz" }
+        ],
+        skema: `[4 Markah]:\nMana-mana 4 elemen berikut (1m setiap satu):\n• Keselamatan\n• Maklumat / Pelabelan\n• Jenama\n• Tipografi / Warna / Ilustrasi / Saiz`
+      },
+      "s19": {
+        tajuk: "Soalan 19 - Urutan Penilaian Reka Bentuk Makanan",
+        max: 3,
+        kriteria: [
+          { words: ["b"], point: 1, label: "Langkah 1: B" },
+          { words: ["c"], point: 1, label: "Langkah 2: C" },
+          { words: ["a"], point: 1, label: "Langkah 3: A" }
+        ],
+        skema: `[3 Markah]:\nUrutan yang betul:\nLangkah 1: B (Lakaran perkembangan idea)\nLangkah 2: C (Pemilihan bahan, alatan dan teknik)\nLangkah 3: A (Hasil terakhir memenuhi kriteria)`
+      }
+    };
+
+    const ALL_QUESTION_KEYS = Object.keys(SKEMA_DATA);
+    let currentUser = null;
+    let currentRole = null;
+    let storedSubmissions = {};
+
+    window.addEventListener("DOMContentLoaded", () => {
+      isiDropdownMurid();
+      binaBorangPenandaanGuru();
+      binaMatriksStatusAdmin();
+
+      document.querySelectorAll("#soalanForm textarea, #soalanForm input").forEach(el => {
+        el.addEventListener("input", simpanAutoLocal);
+      });
+    });
+
+    function normalizeIc(val) {
+      if (!val) return "";
+      let digits = String(val).replace(/[^0-9]/g, "");
+      return digits;
+    }
+
+    function cleanName(val) {
+      return String(val || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+    }
+
+    function isiDropdownMurid() {
+      const selM = document.getElementById("selectNamaMurid");
+      const selG = document.getElementById("selectMuridMenanda");
+      selM.innerHTML = '<option value="">-- Sila Pilih Nama --</option>';
+      selG.innerHTML = '<option value="">-- Sila Pilih Calon --</option>';
+
+      SENARAI_MURID.forEach(m => {
+        const o1 = document.createElement("option");
+        o1.value = m.nama;
+        o1.textContent = m.nama;
+        selM.appendChild(o1);
+
+        const o2 = document.createElement("option");
+        o2.value = m.nama;
+        o2.textContent = m.nama;
+        selG.appendChild(o2);
+      });
+    }
+
+    function switchLoginTab(role) {
+      const tabM = document.getElementById("tabMuridBtn");
+      const tabG = document.getElementById("tabGuruBtn");
+      const fM = document.getElementById("formMurid");
+      const fG = document.getElementById("formGuru");
+
+      if (role === 'murid') {
+        tabM.className = "w-1/2 py-2 rounded-lg font-bold text-xs md:text-sm transition bg-white text-teal-950 shadow";
+        tabG.className = "w-1/2 py-2 rounded-lg font-bold text-xs md:text-sm transition text-slate-500 hover:text-teal-950";
+        fM.classList.remove("hidden");
+        fG.classList.add("hidden");
+      } else {
+        tabG.className = "w-1/2 py-2 rounded-lg font-bold text-xs md:text-sm transition bg-white text-teal-950 shadow";
+        tabM.className = "w-1/2 py-2 rounded-lg font-bold text-xs md:text-sm transition text-slate-500 hover:text-teal-950";
+        fG.classList.remove("hidden");
+        fM.classList.add("hidden");
+      }
+    }
+
+    async function loginMurid() {
+      const nama = document.getElementById("selectNamaMurid").value;
+      const icInput = normalizeIc(document.getElementById("inputIcMurid").value);
+
+      if (!nama) {
+        tunjukMesej("Sila pilih nama anda.", "rose");
+        return;
+      }
+
+      const match = SENARAI_MURID.find(m => m.nama === nama);
+      if (match && normalizeIc(match.ic) === icInput) {
+        currentUser = match;
+        currentRole = 'murid';
+        
+        const btn = document.getElementById("btnLoginMurid");
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Memuatkan data...';
+
+        document.getElementById("loginSection").classList.add("hidden");
+        document.getElementById("examSection").classList.remove("hidden");
+        document.getElementById("userBadge").classList.remove("hidden");
+        document.getElementById("badgeNama").textContent = currentUser.nama;
+        document.getElementById("badgePeranan").textContent = "CALON RBT TINGKATAN 2";
+
+        muatAutoLocal();
+        await segerakKemajuanDanMarkahMurid(currentUser.ic);
+
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-arrow-right-to-bracket mr-2"></i> Masuk Portal Ujian';
+      } else {
+        tunjukMesej("Kata laluan salah. Sila masukkan nombor kad pengenalan anda tanpa tanda sempang.", "rose");
+      }
+    }
+
+    function loginGuru() {
+      const pass = document.getElementById("inputPassGuru").value.trim();
+      if (pass === "adminrbt2" || pass === "adminrbt32") {
+        currentUser = { nama: "Guru Pentadbir" };
+        currentRole = 'guru';
+        tunjukMesej("Akses Pentadbir disahkan!", "emerald");
+        setTimeout(() => {
+          document.getElementById("loginSection").classList.add("hidden");
+          document.getElementById("guruSection").classList.remove("hidden");
+          document.getElementById("userBadge").classList.remove("hidden");
+          document.getElementById("badgeNama").textContent = "Cikgu Penanda RBT T2";
+          document.getElementById("badgePeranan").textContent = "PENTADBIR GURU";
+          tarikDariGoogleSheet(false);
+        }, 400);
+      } else {
+        tunjukMesej("Kata laluan pentadbir tidak sah.", "rose");
+      }
+    }
+
+    function logout() {
+      if (confirm("Adakah anda pasti ingin log keluar?")) {
+        currentUser = null;
+        currentRole = null;
+        document.getElementById("loginSection").classList.remove("hidden");
+        document.getElementById("examSection").classList.add("hidden");
+        document.getElementById("guruSection").classList.add("hidden");
+        document.getElementById("userBadge").classList.add("hidden");
+        document.getElementById("panelKeputusanMurid").classList.add("hidden");
+        document.getElementById("inputPassGuru").value = "";
+        document.getElementById("inputIcMurid").value = "";
+      }
+    }
+
+    function tunjukMesej(teks, warna) {
+      const el = document.getElementById("loginMsg");
+      el.textContent = teks;
+      el.className = `mt-4 text-center text-xs font-bold text-${warna}-600 block`;
+    }
+
+    function kumpulJawapanSoalan(sNo) {
+      if (sNo === 1) {
+        const rad = document.querySelector('input[name="ans_s1"]:checked');
+        return rad ? rad.value : "";
+      } else if (sNo === 2) {
+        return `Besar-kecil: ${document.getElementById("ans_s2_besar").value.toUpperCase()} | Berat-ringan: ${document.getElementById("ans_s2_berat").value.toUpperCase()} | Tinggi-rendah: ${document.getElementById("ans_s2_tinggi").value.toUpperCase()}`;
+      } else if (sNo === 3) {
+        return `A: ${document.getElementById("ans_s3_a").value} | B: ${document.getElementById("ans_s3_b").value} | C: ${document.getElementById("ans_s3_c").value}`;
+      } else if (sNo === 4) {
+        return [1,2,3,4,5].map(i => document.getElementById(`ans_s4_${i}`).value).filter(Boolean).join(", ");
+      } else if (sNo === 5) {
+        return `(a) ${document.getElementById("ans_s5_a").value} | (b) ${document.getElementById("ans_s5_b").value} | (c) ${document.getElementById("ans_s5_c").value}`;
+      } else if (sNo === 6) {
+        let chks = [];
+        if (document.getElementById("chk_s6_tukul").checked) chks.push("Tukul kuku kambing");
+        if (document.getElementById("chk_s6_grinder").checked) chks.push("Mesin pengisar sudut");
+        if (document.getElementById("chk_s6_pahat").checked) chks.push("Pahat tepi serong");
+        if (document.getElementById("chk_s6_gergaji").checked) chks.push("Gergaji tangan");
+        if (document.getElementById("chk_s6_drill").checked) chks.push("Gerudi tanpa wayar");
+        return chks.join(", ");
+      } else if (sNo === 7) {
+        return `(a) ${document.getElementById("ans_s7_1").value} | (b) ${document.getElementById("ans_s7_2").value} | (c) ${document.getElementById("ans_s7_3").value}`;
+      } else if (sNo === 8) {
+        return `i: ${document.getElementById("ans_s8_i").value.toUpperCase()}, ii: ${document.getElementById("ans_s8_ii").value.toUpperCase()}`;
+      } else if (sNo === 9) {
+        return `Panas: ${document.getElementById("ans_s9_panas1").value}, ${document.getElementById("ans_s9_panas2").value} | Sejuk: ${document.getElementById("ans_s9_sejuk").value}`;
+      } else if (sNo === 10) {
+        return `(a) ${document.getElementById("ans_s10_anod").value} | (b) ${document.getElementById("ans_s10_cecair").value}`;
+      } else if (sNo === 11) {
+        return `(a) ${document.getElementById("ans_s11_1").value} | (b) ${document.getElementById("ans_s11_2").value} | (c) ${document.getElementById("ans_s11_3").value}`;
+      } else if (sNo === 12) {
+        return [1,2,3,4,5].map(i => document.getElementById(`ans_s12_${i}`).value).filter(Boolean).join(", ");
+      } else if (sNo === 13) {
+        return `1: ${document.getElementById("ans_s13_1").value} | 2: ${document.getElementById("ans_s13_2").value}`;
+      } else if (sNo === 14) {
+        return `ii: ${document.getElementById("ans_s14_ii").value} | iii: ${document.getElementById("ans_s14_iii").value}`;
+      } else if (sNo === 15) {
+        return `(1) ${document.getElementById("ans_s15_1").value.toUpperCase()} | (2) ${document.getElementById("ans_s15_2").value.toUpperCase()} | (3) ${document.getElementById("ans_s15_3").value.toUpperCase()}`;
+      } else if (sNo === 16) {
+        return `1: ${document.getElementById("ans_s16_1").value} | 2: ${document.getElementById("ans_s16_2").value}`;
+      } else if (sNo === 17) {
+        return `(a) ${document.getElementById("ans_s17_1").value.toUpperCase()} | (b) ${document.getElementById("ans_s17_2").value.toUpperCase()} | (c) ${document.getElementById("ans_s17_3").value.toUpperCase()}`;
+      } else if (sNo === 18) {
+        return [1,2,3,4].map(i => document.getElementById(`ans_s18_${i}`).value).filter(Boolean).join(", ");
+      } else if (sNo === 19) {
+        return `${document.getElementById("ans_s19_1").value.toUpperCase()} -> ${document.getElementById("ans_s19_2").value.toUpperCase()} -> ${document.getElementById("ans_s19_3").value.toUpperCase()}`;
+      }
+      return "";
+    }
+
+    function pasangJawapanSoalan(sNo, strVal) {
+      if (!strVal) return;
+      if (sNo === 1) {
+        const rad = document.querySelector(`input[name="ans_s1"][value="${strVal}"]`);
+        if (rad) rad.checked = true;
+      } else if (sNo === 2) {
+        const parts = strVal.split(" | ");
+        if (parts[0]) document.getElementById("ans_s2_besar").value = parts[0].replace("Besar-kecil: ", "");
+        if (parts[1]) document.getElementById("ans_s2_berat").value = parts[1].replace("Berat-ringan: ", "");
+        if (parts[2]) document.getElementById("ans_s2_tinggi").value = parts[2].replace("Tinggi-rendah: ", "");
+      } else if (sNo === 3) {
+        const parts = strVal.split(" | ");
+        if (parts[0]) document.getElementById("ans_s3_a").value = parts[0].replace("A: ", "");
+        if (parts[1]) document.getElementById("ans_s3_b").value = parts[1].replace("B: ", "");
+        if (parts[2]) document.getElementById("ans_s3_c").value = parts[2].replace("C: ", "");
+      } else if (sNo === 4) {
+        const parts = strVal.split(", ");
+        parts.forEach((p, idx) => {
+          if (idx < 5 && document.getElementById(`ans_s4_${idx+1}`)) {
+            document.getElementById(`ans_s4_${idx+1}`).value = p;
+          }
+        });
+      } else if (sNo === 5) {
+        const parts = strVal.split(" | ");
+        if (parts[0]) document.getElementById("ans_s5_a").value = parts[0].replace("(a) ", "");
+        if (parts[1]) document.getElementById("ans_s5_b").value = parts[1].replace("(b) ", "");
+        if (parts[2]) document.getElementById("ans_s5_c").value = parts[2].replace("(c) ", "");
+      } else if (sNo === 6) {
+        document.getElementById("chk_s6_tukul").checked = strVal.includes("Tukul");
+        document.getElementById("chk_s6_grinder").checked = strVal.includes("pengisar");
+        document.getElementById("chk_s6_pahat").checked = strVal.includes("Pahat");
+        document.getElementById("chk_s6_gergaji").checked = strVal.includes("Gergaji");
+        document.getElementById("chk_s6_drill").checked = strVal.includes("Gerudi");
+      } else if (sNo === 7) {
+        const parts = strVal.split(" | ");
+        if (parts[0]) document.getElementById("ans_s7_1").value = parts[0].replace("(a) ", "");
+        if (parts[1]) document.getElementById("ans_s7_2").value = parts[1].replace("(b) ", "");
+        if (parts[2]) document.getElementById("ans_s7_3").value = parts[2].replace("(c) ", "");
+      } else if (sNo === 8) {
+        const m = strVal.match(/i:\s*([A-D]),\s*ii:\s*([A-D])/i);
+        if (m) {
+          document.getElementById("ans_s8_i").value = m[1];
+          document.getElementById("ans_s8_ii").value = m[2];
+        }
+      } else if (sNo === 9) {
+        const parts = strVal.split(" | ");
+        if (parts[0]) {
+          const sub = parts[0].replace("Panas: ", "").split(", ");
+          if (sub[0]) document.getElementById("ans_s9_panas1").value = sub[0];
+          if (sub[1]) document.getElementById("ans_s9_panas2").value = sub[1];
+        }
+        if (parts[1]) document.getElementById("ans_s9_sejuk").value = parts[1].replace("Sejuk: ", "");
+      } else if (sNo === 10) {
+        const parts = strVal.split(" | ");
+        if (parts[0]) document.getElementById("ans_s10_anod").value = parts[0].replace("(a) ", "");
+        if (parts[1]) document.getElementById("ans_s10_cecair").value = parts[1].replace("(b) ", "");
+      } else if (sNo === 11) {
+        const parts = strVal.split(" | ");
+        if (parts[0]) document.getElementById("ans_s11_1").value = parts[0].replace("(a) ", "");
+        if (parts[1]) document.getElementById("ans_s11_2").value = parts[1].replace("(b) ", "");
+        if (parts[2]) document.getElementById("ans_s11_3").value = parts[2].replace("(c) ", "");
+      } else if (sNo === 12) {
+        const parts = strVal.split(", ");
+        parts.forEach((p, idx) => {
+          if (idx < 5 && document.getElementById(`ans_s12_${idx+1}`)) {
+            document.getElementById(`ans_s12_${idx+1}`).value = p;
+          }
+        });
+      } else if (sNo === 13) {
+        const parts = strVal.split(" | ");
+        if (parts[0]) document.getElementById("ans_s13_1").value = parts[0].replace("1: ", "");
+        if (parts[1]) document.getElementById("ans_s13_2").value = parts[1].replace("2: ", "");
+      } else if (sNo === 14) {
+        const parts = strVal.split(" | ");
+        if (parts[0]) document.getElementById("ans_s14_ii").value = parts[0].replace("ii: ", "");
+        if (parts[1]) document.getElementById("ans_s14_iii").value = parts[1].replace("iii: ", "");
+      } else if (sNo === 15) {
+        const parts = strVal.split(" | ");
+        if (parts[0]) document.getElementById("ans_s15_1").value = parts[0].replace("(1) ", "");
+        if (parts[1]) document.getElementById("ans_s15_2").value = parts[1].replace("(2) ", "");
+        if (parts[2]) document.getElementById("ans_s15_3").value = parts[2].replace("(3) ", "");
+      } else if (sNo === 16) {
+        const parts = strVal.split(" | ");
+        if (parts[0]) document.getElementById("ans_s16_1").value = parts[0].replace("1: ", "");
+        if (parts[1]) document.getElementById("ans_s16_2").value = parts[1].replace("2: ", "");
+      } else if (sNo === 17) {
+        const parts = strVal.split(" | ");
+        if (parts[0]) document.getElementById("ans_s17_1").value = parts[0].replace("(a) ", "");
+        if (parts[1]) document.getElementById("ans_s17_2").value = parts[1].replace("(b) ", "");
+        if (parts[2]) document.getElementById("ans_s17_3").value = parts[2].replace("(c) ", "");
+      } else if (sNo === 18) {
+        const parts = strVal.split(", ");
+        parts.forEach((p, idx) => {
+          if (idx < 4 && document.getElementById(`ans_s18_${idx+1}`)) {
+            document.getElementById(`ans_s18_${idx+1}`).value = p;
+          }
+        });
+      } else if (sNo === 19) {
+        const parts = strVal.split(" -> ");
+        if (parts[0]) document.getElementById("ans_s19_1").value = parts[0];
+        if (parts[1]) document.getElementById("ans_s19_2").value = parts[1];
+        if (parts[2]) document.getElementById("ans_s19_3").value = parts[2];
+      }
+    }
+
+    function simpanAutoLocal() {
+      if (!currentUser || currentRole !== 'murid') return;
+      const j = {};
+      for (let sNo = 1; sNo <= 19; sNo++) {
+        j[`s${sNo}`] = kumpulJawapanSoalan(sNo);
+      }
+      localStorage.setItem(`jawapan_rbt2_${normalizeIc(currentUser.ic)}`, JSON.stringify(j));
+      document.getElementById("saveStatus").innerHTML = '<i class="fa-solid fa-cloud-arrow-up mr-1"></i> Tersimpan di peranti';
+    }
+
+    function muatAutoLocal() {
+      if (!currentUser) return;
+      const str = localStorage.getItem(`jawapan_rbt2_${normalizeIc(currentUser.ic)}`);
+      if (str) {
+        try {
+          const d = JSON.parse(str);
+          for (let sNo = 1; sNo <= 19; sNo++) {
+            if (d[`s${sNo}`]) pasangJawapanSoalan(sNo, d[`s${sNo}`]);
+          }
+        } catch(e){}
+      }
+    }
+
+    async function segerakKemajuanDanMarkahMurid(ic) {
+      const st = document.getElementById("saveStatus");
+      st.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> Menyemak Google Sheet...';
+      const cleanIc = normalizeIc(ic);
+
+      try {
+        const res = await fetch(`${SCRIPT_URL}?action=get_student_answers&nokp=${cleanIc}&_t=${Date.now()}`);
+        const data = await res.json();
+
+        if (data.status === "found" && data.answers) {
+          for (let sNo = 1; sNo <= 19; sNo++) {
+            const val = data.answers[`s${sNo}`];
+            if (val) {
+              pasangJawapanSoalan(sNo, val);
+              const badge = document.getElementById(`badge_status_${sNo}`);
+              if (badge) {
+                badge.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Disimpan di Awan';
+                badge.className = "text-xs text-emerald-700 font-bold";
+              }
+            }
+          }
+        }
+
+        if (data.result) {
+          const r = data.result;
+          const panel = document.getElementById("panelKeputusanMurid");
+          panel.classList.remove("hidden");
+
+          const markah = parseFloat(r.jumlahMarkah) || 0;
+          const peratus = ((markah / 50) * 100).toFixed(1);
+
+          document.getElementById("skorMuridJumlah").textContent = `${markah} / 50`;
+          document.getElementById("skorMuridPeratus").textContent = `${peratus}%`;
+          document.getElementById("skorMuridGred").textContent = r.gred;
+          document.getElementById("teksUlasanGuruMurid").textContent = r.ulasan || "(Tiada ulasan tambahan)";
+          if (r.tarikhTanda) {
+            document.getElementById("tarikhTandaMurid").textContent = "Tarikh Ditanda: " + new Date(r.tarikhTanda).toLocaleString("ms-MY");
+          }
+
+          if (r.markahPerItem) {
+            Object.keys(r.markahPerItem).forEach(k => {
+              const bNilai = document.getElementById(`badgeNilai_${k}`);
+              if (bNilai) {
+                bNilai.textContent = `Markah: ${r.markahPerItem[k]} / ${SKEMA_DATA[k].max}m`;
+                bNilai.classList.remove("hidden");
+              }
+            });
+          }
+          st.innerHTML = '<i class="fa-solid fa-stamp text-emerald-600 mr-1"></i> Kertas Telah Ditanda';
+        } else {
+          document.getElementById("panelKeputusanMurid").classList.add("hidden");
+          st.innerHTML = '<i class="fa-solid fa-check mr-1"></i> Sedia Menjawab';
+        }
+      } catch (err) {
+        st.innerHTML = '<i class="fa-solid fa-hard-drive mr-1"></i> Mod Setempat (Luar Talian)';
+      }
+    }
+
+    async function hantarSoalan(soalanNo) {
+      if (!currentUser) return;
+
+      const answerText = kumpulJawapanSoalan(soalanNo);
+      const btn = document.getElementById(`btn_soalan_${soalanNo}`);
+      const badge = document.getElementById(`badge_status_${soalanNo}`);
+      
+      const originalText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1.5"></i> Menyimpan...';
+
+      const payload = {
+        action: "hantar_soalan",
+        soalanNo: soalanNo,
+        nama: currentUser.nama,
+        nokp: normalizeIc(currentUser.ic),
+        answers: { [`s${soalanNo}`]: answerText }
+      };
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+
+        simpanAutoLocal();
+
+        badge.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Disimpan di Google Sheet';
+        badge.className = "text-xs text-emerald-700 font-bold";
+        btn.innerHTML = '<i class="fa-solid fa-check mr-1.5"></i> Berjaya!';
+        btn.className = "px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow transition";
+        
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.innerHTML = `Kemas Kini S${soalanNo}`;
+        }, 1500);
+
+      } catch (err) {
+        alert("Disimpan setempat di peranti.");
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      }
+    }
+
+    async function submitSemuaJawapan() {
+      if (!confirm("Adakah anda pasti ingin menghantar kesemua soalan ke Google Sheet sekarang?")) return;
+
+      const allAnswers = {};
+      for (let sNo = 1; sNo <= 19; sNo++) {
+        allAnswers[`s${sNo}`] = kumpulJawapanSoalan(sNo);
+      }
+
+      const btn = document.getElementById("btnHantarSemua");
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Menghantar Semua Jawapan...';
+
+      const payload = {
+        action: "hantar_jawapan",
+        nama: currentUser.nama,
+        nokp: normalizeIc(currentUser.ic),
+        answers: allAnswers
+      };
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+
+        alert("Tahniah! Kesemua 19 soalan telah selamat dihantar ke Google Sheet.");
+        btn.innerHTML = '<i class="fa-solid fa-circle-check mr-2"></i> Semua Jawapan Selesai Dihantar';
+        btn.classList.replace("bg-emerald-600", "bg-slate-700");
+
+        for (let sNo = 1; sNo <= 19; sNo++) {
+          const badge = document.getElementById(`badge_status_${sNo}`);
+          if (badge) {
+            badge.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Selesai Dihantar';
+            badge.className = "text-xs text-emerald-700 font-bold";
+          }
+        }
+      } catch (e) {
+        alert("Ralat sambungan. Sila pastikan talian internet aktif.");
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i> Hantar Semula';
+      }
+    }
+
+    // MOD GURU / ADMIN
+    async function tarikDariGoogleSheet(showAlert) {
+      const box = document.getElementById("statusSegerakBox");
+      const btn = document.getElementById("btnSegerak");
+      
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1.5"></i> Menyegerak...';
+      }
+
+      try {
+        const res = await fetch(`${SCRIPT_URL}?action=get_submissions&_t=${Date.now()}`);
+        const data = await res.json();
+        
+        if (Array.isArray(data)) {
+          storedSubmissions = {};
+
+          data.forEach(row => {
+            let rowIc = "", rowName = "";
+
+            Object.keys(row).forEach(headerKey => {
+              const hk = headerKey.toLowerCase().replace(/[^a-z0-9]/g, "");
+              if (hk.includes("nama")) rowName = String(row[headerKey] || "");
+              else if (hk.includes("kp") || hk.includes("ic")) rowIc = String(row[headerKey] || "");
+            });
+
+            const normIc = normalizeIc(rowIc);
+            const normName = cleanName(rowName);
+
+            const matchedMurid = SENARAI_MURID.find(m => {
+              return (normIc && normalizeIc(m.ic) === normIc) || (normName && cleanName(m.nama) === normName);
+            });
+
+            if (matchedMurid) {
+              const targetIcKey = normalizeIc(matchedMurid.ic);
+              if (!storedSubmissions[targetIcKey]) storedSubmissions[targetIcKey] = {};
+
+              ALL_QUESTION_KEYS.forEach(qKey => {
+                const targetKeyClean = qKey.toLowerCase().replace(/[^a-z0-9]/g, "");
+                Object.keys(row).forEach(hKey => {
+                  if (hKey.toLowerCase().replace(/[^a-z0-9]/g, "") === targetKeyClean) {
+                    const ansVal = String(row[hKey] || "").trim();
+                    if (ansVal) storedSubmissions[targetIcKey][qKey] = ansVal;
+                  }
+                });
+              });
+            }
+          });
+
+          binaMatriksStatusAdmin();
+          muatJawapanMuridDipilih();
+
+          if (box) {
+            box.innerHTML = `<span class="text-emerald-700 font-bold"><i class="fa-solid fa-circle-check mr-1.5"></i> Berjaya: ${Object.keys(storedSubmissions).length} / ${SENARAI_MURID.length} calon mempunyai rekod di Google Sheet.</span>`;
+          }
+          if (showAlert) alert("Penyegerakan Google Sheet berjaya!");
+        }
+      } catch (e) {
+        if (box) box.innerHTML = `<span class="text-rose-600 font-bold"><i class="fa-solid fa-triangle-exclamation mr-1.5"></i> Ralat: ${e.message}</span>`;
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fa-solid fa-arrows-rotate mr-1.5"></i> Segerak Semula';
+        }
+      }
+    }
+
+    function binaMatriksStatusAdmin() {
+      const tbody = document.getElementById("tbodyMatriksCalon");
+      if (!tbody) return;
+      tbody.innerHTML = "";
+
+      SENARAI_MURID.forEach((murid, idx) => {
+        const ic = normalizeIc(murid.ic);
+        let sub = storedSubmissions[ic] || {};
+
+        const local = localStorage.getItem(`jawapan_rbt2_${ic}`);
+        if (local) {
+          try {
+            const p = JSON.parse(local);
+            ALL_QUESTION_KEYS.forEach(qKey => {
+              if (!sub[qKey] && p[qKey]) sub[qKey] = p[qKey];
+            });
+          } catch(e){}
+        }
+
+        let soalanSelesaiCount = 0;
+        let cellsHtml = "";
+
+        for (let sNo = 1; sNo <= 19; sNo++) {
+          const key = `s${sNo}`;
+          const hasAnswer = sub[key] && String(sub[key]).trim() !== "";
+
+          if (hasAnswer) {
+            soalanSelesaiCount++;
+            cellsHtml += `
+              <td class="py-2 px-1 text-center">
+                <span class="inline-flex items-center justify-center w-5 h-5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">
+                  <i class="fa-solid fa-check"></i>
+                </span>
+              </td>`;
+          } else {
+            cellsHtml += `<td class="py-2 px-1 text-center text-slate-300 font-bold">—</td>`;
+          }
+        }
+
+        const tr = document.createElement("tr");
+        tr.className = "hover:bg-slate-50 transition";
+        tr.innerHTML = `
+          <td class="py-2.5 px-3 font-mono font-bold text-slate-500">${idx + 1}</td>
+          <td class="py-2.5 px-3 font-semibold text-slate-800 flex flex-col">
+            <span>${murid.nama}</span>
+            <span class="text-[10px] text-slate-400 font-mono">${murid.ic}</span>
+          </td>
+          ${cellsHtml}
+          <td class="py-2.5 px-3 text-center">
+            <span class="px-2 py-0.5 rounded-full text-xs font-black ${soalanSelesaiCount === 19 ? 'bg-emerald-100 text-emerald-800' : (soalanSelesaiCount > 0 ? 'bg-teal-100 text-teal-800' : 'bg-slate-100 text-slate-500')}">
+              ${soalanSelesaiCount} / 19
+            </span>
+          </td>
+          <td class="py-2.5 px-3 text-center">
+            <button onclick="pilihCalonDanScroll('${murid.nama}')" class="px-2.5 py-1.5 bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs rounded-lg transition shadow-xs flex items-center mx-auto">
+              <i class="fa-solid fa-pen-to-square mr-1"></i> Tanda
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function pilihCalonDanScroll(namaCalon) {
+      document.getElementById("selectMuridMenanda").value = namaCalon;
+      muatJawapanMuridDipilih();
+      document.getElementById("panelMenandaGuru").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function analisisJawapanAI(kunciSoalan, jawapanTeks) {
+      if (!jawapanTeks || !jawapanTeks.trim()) return { cadanganMarkah: 0, kataKunciDitemui: [] };
+
+      const itemSkema = SKEMA_DATA[kunciSoalan];
+      if (!itemSkema || !itemSkema.kriteria) return { cadanganMarkah: 0, kataKunciDitemui: [] };
+
+      const teks = jawapanTeks.toLowerCase();
+      let kiraanMarkah = 0;
+      let dikesan = [];
+
+      itemSkema.kriteria.forEach(krit => {
+        const padan = krit.words.some(w => teks.includes(w.toLowerCase()));
+        if (padan) {
+          kiraanMarkah += (krit.point || 1);
+          dikesan.push(krit.label);
+        }
+      });
+
+      if (kiraanMarkah > itemSkema.max) kiraanMarkah = itemSkema.max;
+
+      return { cadanganMarkah: kiraanMarkah, kataKunciDitemui: dikesan };
+    }
+
+    function binaBorangPenandaanGuru() {
+      const container = document.getElementById("containerPenandaan");
+      container.innerHTML = "";
+
+      ALL_QUESTION_KEYS.forEach(k => {
+        const itm = SKEMA_DATA[k];
+        const card = document.createElement("div");
+        card.className = "bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden";
+        card.innerHTML = `
+          <div class="bg-slate-50 px-5 py-3 border-b flex flex-wrap justify-between items-center gap-2">
+            <span class="font-bold text-slate-800 text-sm">${itm.tajuk}</span>
+            <div class="flex items-center space-x-2">
+              <span class="text-xs text-slate-500 font-bold">Markah Penuh: ${itm.max}m</span>
+              <button type="button" onclick="ikutCadanganAI('${k}')" class="px-2.5 py-1 bg-amber-500 hover:bg-amber-600 text-teal-950 rounded-lg text-xs font-bold transition flex items-center shadow-sm">
+                <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Ikut AI
+              </button>
+              <input type="number" id="markah_${k}" min="0" max="${itm.max}" value="0" oninput="kiraMarkahKeseluruhan()"
+                class="w-16 px-2 py-1 text-center font-black text-teal-700 bg-white border border-teal-300 rounded-lg focus:ring-2 focus:ring-teal-500 text-sm" />
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-200 p-4 gap-4 text-xs">
+            <div>
+              <div class="flex justify-between items-center mb-1">
+                <span class="font-bold text-slate-600 flex items-center">
+                  <i class="fa-solid fa-user-pen text-teal-600 mr-1.5"></i> Jawapan Calon:
+                </span>
+                <span id="badgeAI_${k}" class="text-[11px] font-bold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full">
+                  ⚡ Cadangan AI: 0/${itm.max}m
+                </span>
+              </div>
+              <div id="viewMurid_${k}" class="p-3 bg-slate-50 rounded-xl border text-slate-800 min-h-[70px] whitespace-pre-wrap leading-relaxed italic">
+                (Calon belum dipilih)
+              </div>
+              <div class="mt-2" id="kotakKeywords_${k}">
+                <span class="text-[10px] text-slate-400 font-bold block mb-1">Kata Kunci Dikesan:</span>
+                <div id="listKeywords_${k}" class="flex flex-wrap gap-1">
+                  <span class="text-[10px] text-slate-400 italic">Tiada kata kunci dikesan.</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="font-bold text-amber-700 mb-1 flex items-center">
+                <i class="fa-solid fa-book-bookmark text-amber-600 mr-1.5"></i> Skema Jawapan Rasmi:
+              </span>
+              <div class="p-3 bg-amber-50/50 rounded-xl border border-amber-200 text-slate-700 min-h-[70px] whitespace-pre-wrap leading-relaxed font-mono text-[11px]">
+${itm.skema}
+              </div>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function ikutCadanganAI(kunci) {
+      const elAI = document.getElementById(`badgeAI_${kunci}`);
+      if (elAI && elAI.dataset.score !== undefined) {
+        document.getElementById(`markah_${kunci}`).value = elAI.dataset.score;
+        kiraMarkahKeseluruhan();
+      }
+    }
+
+    function terapkanSemuaCadanganAI() {
+      const nama = document.getElementById("selectMuridMenanda").value;
+      if (!nama) { alert("Sila pilih calon terlebih dahulu."); return; }
+      ALL_QUESTION_KEYS.forEach(k => ikutCadanganAI(k));
+      kiraMarkahKeseluruhan();
+      alert("Semua cadangan markah AI telah diterapkan bagi calon ini!");
+    }
+
+    function muatJawapanMuridDipilih() {
+      const nama = document.getElementById("selectMuridMenanda").value;
+      if (!nama) return;
+      const m = SENARAI_MURID.find(x => x.nama === nama);
+      if (!m) return;
+
+      const normIc = normalizeIc(m.ic);
+      let j = storedSubmissions[normIc] || {};
+
+      if (Object.keys(j).length === 0) {
+        const local = localStorage.getItem(`jawapan_rbt2_${normIc}`);
+        if (local) {
+          try { j = JSON.parse(local); } catch(e){}
+        }
+      }
+
+      ALL_QUESTION_KEYS.forEach(k => {
+        const el = document.getElementById(`viewMurid_${k}`);
+        const textAnswer = (j && j[k]) ? j[k] : "";
+        
+        if (el) {
+          el.textContent = textAnswer ? textAnswer : "(Calon tidak menjawab)";
+          el.className = textAnswer
+            ? "p-3 bg-slate-50 rounded-xl border text-slate-800 min-h-[70px] whitespace-pre-wrap leading-relaxed"
+            : "p-3 bg-slate-50 rounded-xl border text-slate-400 min-h-[70px] whitespace-pre-wrap leading-relaxed italic";
+        }
+
+        const aiResult = analisisJawapanAI(k, textAnswer);
+        const bAI = document.getElementById(`badgeAI_${k}`);
+        const lKey = document.getElementById(`listKeywords_${k}`);
+        
+        if (bAI) {
+          bAI.textContent = `⚡ Cadangan AI: ${aiResult.cadanganMarkah} / ${SKEMA_DATA[k].max}m`;
+          bAI.dataset.score = aiResult.cadanganMarkah;
+        }
+
+        if (lKey) {
+          lKey.innerHTML = "";
+          if (aiResult.kataKunciDitemui.length > 0) {
+            aiResult.kataKunciDitemui.forEach(kw => {
+              const span = document.createElement("span");
+              span.className = "px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-bold text-[10px]";
+              span.textContent = `✓ ${kw}`;
+              lKey.appendChild(span);
+            });
+          } else {
+            lKey.innerHTML = '<span class="text-[10px] text-slate-400 italic">Tiada kata kunci dikesan.</span>';
+          }
+        }
+      });
+
+      const savedScore = localStorage.getItem(`markah_rbt2_${normIc}`);
+      if (savedScore) {
+        try {
+          const obj = JSON.parse(savedScore);
+          if (obj.scores) {
+            Object.keys(obj.scores).forEach(key => {
+              const inp = document.getElementById(`markah_${key}`);
+              if (inp) inp.value = obj.scores[key];
+            });
+          }
+          if (obj.ulasan) document.getElementById("ulasanGuru").value = obj.ulasan;
+        } catch(e){}
+      } else {
+        ALL_QUESTION_KEYS.forEach(key => {
+          const inp = document.getElementById(`markah_${key}`);
+          if (inp) inp.value = 0;
+        });
+        document.getElementById("ulasanGuru").value = "";
+      }
+
+      kiraMarkahKeseluruhan();
+    }
+
+    function kiraMarkahKeseluruhan() {
+      let total = 0;
+      ALL_QUESTION_KEYS.forEach(k => {
+        const itm = SKEMA_DATA[k];
+        const inp = document.getElementById(`markah_${k}`);
+        let v = parseFloat(inp ? inp.value : 0) || 0;
+        if (v > itm.max) { v = itm.max; inp.value = v; }
+        if (v < 0) { v = 0; inp.value = 0; }
+        total += v;
+      });
+
+      const peratus = ((total / 50) * 100).toFixed(1);
+      document.getElementById("liveJumlahMarkah").textContent = `${total} / 50`;
+      document.getElementById("livePeratusan").textContent = `${peratus}%`;
+
+      let g = "F";
+      if (peratus >= 85) g = "A";
+      else if (peratus >= 70) g = "B";
+      else if (peratus >= 60) g = "C";
+      else if (peratus >= 50) g = "D";
+      else if (peratus >= 40) g = "E";
+      else g = "F";
+
+      document.getElementById("liveGred").textContent = g;
+    }
+
+    async function simpanPemarkahanGuru() {
+      const nama = document.getElementById("selectMuridMenanda").value;
+      if (!nama) { alert("Sila pilih calon terlebih dahulu."); return; }
+      const m = SENARAI_MURID.find(x => x.nama === nama);
+
+      const scores = {};
+      let total = 0;
+      ALL_QUESTION_KEYS.forEach(k => {
+        const val = parseFloat(document.getElementById(`markah_${k}`).value) || 0;
+        scores[k] = val;
+        total += val;
+      });
+
+      const normIc = normalizeIc(m.ic);
+      const payload = {
+        action: "simpan_markah",
+        nama: m.nama,
+        nokp: normIc,
+        jumlahMarkah: total,
+        gred: document.getElementById("liveGred").textContent,
+        ulasan: document.getElementById("ulasanGuru").value,
+        markahPerItem: scores
+      };
+
+      localStorage.setItem(`markah_rbt2_${normIc}`, JSON.stringify({ scores, ulasan: payload.ulasan }));
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+        alert(`Markah bagi calon ${m.nama} telah berjaya direkodkan ke Google Sheet!`);
+      } catch (e) {
+        alert("Markah disimpan secara setempat di peranti guru.");
+      }
+    }
+  </script>
+</body>
+</html>
